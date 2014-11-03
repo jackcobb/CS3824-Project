@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/DnaSequenceVector.o \
+	${OBJECTDIR}/FastaParser.o \
 	${OBJECTDIR}/IDnaRepository.o \
 	${OBJECTDIR}/RandomEnumerator.o \
 	${OBJECTDIR}/main.o
@@ -69,6 +70,11 @@ ${OBJECTDIR}/DnaSequenceVector.o: DnaSequenceVector.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DnaSequenceVector.o DnaSequenceVector.cpp
+
+${OBJECTDIR}/FastaParser.o: FastaParser.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FastaParser.o FastaParser.cpp
 
 ${OBJECTDIR}/IDnaRepository.o: IDnaRepository.cpp 
 	${MKDIR} -p ${OBJECTDIR}
