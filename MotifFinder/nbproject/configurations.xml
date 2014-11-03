@@ -48,6 +48,8 @@
           </incFile>
         </ccTool>
       </compileType>
+      <item path="DnaSequenceVector.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="IDnaRepository.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="IDnaRepository.h" ex="false" tool="3" flavor2="0">
@@ -79,6 +81,8 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="DnaSequenceVector.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="IDnaRepository.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="IDnaRepository.h" ex="false" tool="3" flavor2="0">
