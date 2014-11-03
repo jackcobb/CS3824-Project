@@ -69,27 +69,27 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/motiffinder.exe: ${OBJECTFILES}
 ${OBJECTDIR}/DnaSequenceVector.o: DnaSequenceVector.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I. -include IDnaSequence.h -include Neocleotide.h -include RandomEnumerator.h -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DnaSequenceVector.o DnaSequenceVector.cpp
+	$(COMPILE.cc) -g -I. -IFastaParser.h -IIDnaRepository.h -IIDnaSequence.h -INucleotide.h -IRandomEnumerator.h -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DnaSequenceVector.o DnaSequenceVector.cpp
 
 ${OBJECTDIR}/FastaParser.o: FastaParser.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I. -include IDnaSequence.h -include Neocleotide.h -include RandomEnumerator.h -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FastaParser.o FastaParser.cpp
+	$(COMPILE.cc) -g -I. -IFastaParser.h -IIDnaRepository.h -IIDnaSequence.h -INucleotide.h -IRandomEnumerator.h -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FastaParser.o FastaParser.cpp
 
 ${OBJECTDIR}/IDnaRepository.o: IDnaRepository.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I. -include IDnaSequence.h -include Neocleotide.h -include RandomEnumerator.h -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/IDnaRepository.o IDnaRepository.cpp
+	$(COMPILE.cc) -g -I. -IFastaParser.h -IIDnaRepository.h -IIDnaSequence.h -INucleotide.h -IRandomEnumerator.h -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/IDnaRepository.o IDnaRepository.cpp
 
 ${OBJECTDIR}/RandomEnumerator.o: RandomEnumerator.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I. -include IDnaSequence.h -include Neocleotide.h -include RandomEnumerator.h -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RandomEnumerator.o RandomEnumerator.cpp
+	$(COMPILE.cc) -g -I. -IFastaParser.h -IIDnaRepository.h -IIDnaSequence.h -INucleotide.h -IRandomEnumerator.h -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RandomEnumerator.o RandomEnumerator.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I. -include IDnaSequence.h -include Neocleotide.h -include RandomEnumerator.h -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -I. -IFastaParser.h -IIDnaRepository.h -IIDnaSequence.h -INucleotide.h -IRandomEnumerator.h -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:

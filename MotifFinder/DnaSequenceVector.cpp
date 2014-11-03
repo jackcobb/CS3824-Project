@@ -6,6 +6,7 @@
  */
 #include<iostream>
 #include<vector>
+#include "IDnaSequence.h"
 using namespace std;
 
 class DnaSequenceVector : IDnaSequence
@@ -24,7 +25,7 @@ class DnaSequenceVector : IDnaSequence
         Nucleotide_t Get(int i)
         {
             try{
-                if(i >= Count() || i < 0)
+                if(i >= Size() || i < 0)
                     throw i;
                 return members[i];
             }
@@ -37,7 +38,7 @@ class DnaSequenceVector : IDnaSequence
         void Set(int i, Nucleotide_t input)
         {
             try{
-                if(i >= DnaSequenceVector::Count() || i < 0)
+                if(i >= DnaSequenceVector::Size() || i < 0)
                     throw i;
                 members[i] = input;
             }

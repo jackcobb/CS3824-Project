@@ -18,6 +18,4 @@ public:
 private:
 
 };
-
-#endif	/* IDNASEQUENCE_H */
-
+#endif

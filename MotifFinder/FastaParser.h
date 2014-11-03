@@ -15,7 +15,7 @@ class FastaParser {
 public:
     FastaParser();
     FastaParser(const FastaParser& orig);
-    IDnaRepository Parse(std::ifstream& file);
+    IDnaRepository& Parse(std::ifstream& file);
     virtual ~FastaParser();
 private:
 

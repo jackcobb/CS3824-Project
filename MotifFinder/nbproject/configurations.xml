@@ -4,6 +4,10 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>FastaParser.h</itemPath>
+      <itemPath>IDnaRepository.h</itemPath>
+      <itemPath>IDnaSequence.h</itemPath>
+      <itemPath>Nucleotide.h</itemPath>
       <itemPath>RandomEnumerator.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -13,6 +17,9 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>DnaSequenceVector.cpp</itemPath>
+      <itemPath>FastaParser.cpp</itemPath>
+      <itemPath>IDnaRepository.cpp</itemPath>
       <itemPath>RandomEnumerator.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -40,12 +47,12 @@
         <ccTool>
           <incDir>
             <pElem>.</pElem>
-          </incDir>
-          <incFile>
+            <pElem>FastaParser.h</pElem>
+            <pElem>IDnaRepository.h</pElem>
             <pElem>IDnaSequence.h</pElem>
-            <pElem>Neocleotide.h</pElem>
+            <pElem>Nucleotide.h</pElem>
             <pElem>RandomEnumerator.h</pElem>
-          </incFile>
+          </incDir>
         </ccTool>
       </compileType>
       <item path="DnaSequenceVector.cpp" ex="false" tool="1" flavor2="0">
@@ -57,6 +64,10 @@
       <item path="IDnaRepository.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="IDnaRepository.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IDnaSequence.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Nucleotide.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="RandomEnumerator.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -94,6 +105,10 @@
       <item path="IDnaRepository.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="IDnaRepository.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IDnaSequence.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Nucleotide.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="RandomEnumerator.cpp" ex="false" tool="1" flavor2="0">
       </item>
