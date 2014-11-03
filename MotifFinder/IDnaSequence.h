@@ -7,13 +7,13 @@
 
 #ifndef IDNASEQUENCE_H
 #define	IDNASEQUENCE_H
-#include "Neocleotide.h"
+#include "Nucleotide.h"
 
 class IDnaSequence {
 public:
     virtual int Size() = 0;
-    virtual Neocleotide_t Get(int i) = 0;
-    virtual void Set(int i, Neocleotide_t input) = 0;
+    virtual Nucleotide_t Get(int i) = 0;
+    virtual void Set(int i, Nucleotide_t input) = 0;
     virtual ~IDnaSequence();
 private:
 

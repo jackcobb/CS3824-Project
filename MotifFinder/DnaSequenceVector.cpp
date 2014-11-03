@@ -13,7 +13,7 @@ class DnaSequenceVector : IDnaSequence
     public:
         
         DnaSequenceVector(int max_size) {
-            members = std::vector<Neocleotide_t>(max_size);
+            members = std::vector<Nucleotide_t>(max_size);
 
         }
         int Size()
@@ -21,7 +21,7 @@ class DnaSequenceVector : IDnaSequence
             return members.size();
         }
         
-        Neocleotide_t Get(int i)
+        Nucleotide_t Get(int i)
         {
             try{
                 if(i >= Count() || i < 0)
@@ -34,7 +34,7 @@ class DnaSequenceVector : IDnaSequence
             }
         }
     
-        void Set(int i, Neocleotide_t input)
+        void Set(int i, Nucleotide_t input)
         {
             try{
                 if(i >= DnaSequenceVector::Count() || i < 0)
@@ -53,6 +53,6 @@ class DnaSequenceVector : IDnaSequence
             delete &members;
         }
     private:
-        std::vector<Neocleotide_t> members;
+        std::vector<Nucleotide_t> members;
 };
 
