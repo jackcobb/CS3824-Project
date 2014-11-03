@@ -16,7 +16,7 @@ class DnaSequenceVector : IDnaSequence
             members = std::vector<Neocleotide_t>(max_size);
 
         }
-        int Count()
+        int Size()
         {
             return members.size();
         }

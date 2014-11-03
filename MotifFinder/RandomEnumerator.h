@@ -17,7 +17,7 @@ public:
     int NumberDistrubtionBuckets();
     std::vector<double> & GetDistrubtionBuckets();
     int EnumerateRandomVar();
-    virtual ~RandomEnumerator();
+    ~RandomEnumerator();
 private:
     bool ValidateSizes(std::vector<double> & sizes);
     std::vector<double> buckets;
