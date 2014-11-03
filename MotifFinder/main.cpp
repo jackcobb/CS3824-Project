@@ -7,14 +7,25 @@
  */
 
 #include <cstdlib>
-
+#include<iostream>
+#include "RandomEnumerator.h"
 using namespace std;
 
 /*
  * 
  */
-int main(int argc, char** argv) {
-
-    return 0;
+int main(int argc, char** argv) 
+{
+    const double arr[] = { .5, .25, .125, .125 };
+    const int size = sizeof( arr ) / sizeof ( *arr );
+    std::vector<double> dist(arr, arr+size);
+    RandomEnumerator enumerator = RandomEnumerator();
+    enumerator.InitializeDistribution(dist);
+    double count[] = {0, 0, 0, 0};
+    for(int i = 0; i < 100000; i++)
+    {
+        count[enumerator.EnumerateRandomVar()]++;
+    }
+    cout << count[0] << " " << count[1] << " " << count[2] << " " << count[3];
 }
 
