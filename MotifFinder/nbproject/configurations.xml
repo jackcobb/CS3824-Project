@@ -9,6 +9,7 @@
       <itemPath>IDnaSequence.h</itemPath>
       <itemPath>Nucleotide.h</itemPath>
       <itemPath>RandomEnumerator.h</itemPath>
+      <itemPath>ScoreEngine.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -21,6 +22,7 @@
       <itemPath>FastaParser.cpp</itemPath>
       <itemPath>IDnaRepository.cpp</itemPath>
       <itemPath>RandomEnumerator.cpp</itemPath>
+      <itemPath>ScoreEngine.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -73,6 +75,10 @@
       </item>
       <item path="RandomEnumerator.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ScoreEngine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ScoreEngine.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -113,6 +119,10 @@
       <item path="RandomEnumerator.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="RandomEnumerator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ScoreEngine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ScoreEngine.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
