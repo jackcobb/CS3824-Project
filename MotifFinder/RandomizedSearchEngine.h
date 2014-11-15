@@ -9,14 +9,13 @@
 #define	RANDOMIZEDSEARCHENGINE_H
 
 #include "ISearchEngine.h"
-#include "IScoreEngine.h"
+#include "ScoreEngine.h"
 
 using namespace std;
 
 class RandomizedSearchEngine : ISearchEngine{
 public:
-    RandomizedSearchEngine();
-    RandomizedSearchEngine(IDnaRepository& input);
+    RandomizedSearchEngine(IDnaRepository* input);
     virtual void SetRepo(IDnaRepository& input);
     virtual std::vector<Nucleotide_t> GetMotif();
     virtual std::vector<int> GetStartingLoci();
@@ -34,7 +33,6 @@ private:
     vector<Nucleotide_t> motif;
     vector<int> startingLoci;
     vector<vector<Nucleotide_t> > profileMatrix;
-
 };
 
 #endif	/* RANDOMIZEDSEARCHENGINE_H */
