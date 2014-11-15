@@ -21,7 +21,7 @@ public:
 private:
     int randomPosition(int sequence);
     IScoreEngine& scoreEngine;
-    IDnaRepository& dna;
+    IDnaRepository* dna;
     vector<Nucleotide_t> bestMotif;
     vector<int> startingLoci;
     vector<vector<Nucleotide_t> > ProfileMatrix;
