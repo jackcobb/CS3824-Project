@@ -14,6 +14,9 @@
 class IDnaRepository {
 public:
     virtual int Size();
+    virtual int Size(int i);
+    virtual int Count(Nucleotide_t input);
+    virtual int Count(int sequence, Nucleotide_t input);
     virtual IDnaSequence& Get(int i) =0;
     Nucleotide_t Get(int sequence, int position);
     void Set(int sequence, int position, Nucleotide_t input);

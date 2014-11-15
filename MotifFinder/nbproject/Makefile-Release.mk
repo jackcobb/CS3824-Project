@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/FastaParser.o \
 	${OBJECTDIR}/IDnaRepository.o \
 	${OBJECTDIR}/RandomEnumerator.o \
+	${OBJECTDIR}/ScoreEngine.o \
 	${OBJECTDIR}/main.o
 
 
@@ -85,6 +86,11 @@ ${OBJECTDIR}/RandomEnumerator.o: RandomEnumerator.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RandomEnumerator.o RandomEnumerator.cpp
+
+${OBJECTDIR}/ScoreEngine.o: ScoreEngine.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ScoreEngine.o ScoreEngine.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
