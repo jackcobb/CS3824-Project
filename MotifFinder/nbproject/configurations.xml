@@ -7,6 +7,7 @@
       <itemPath>FastaParser.h</itemPath>
       <itemPath>IDnaRepository.h</itemPath>
       <itemPath>IDnaSequence.h</itemPath>
+      <itemPath>ISearchEngine.h</itemPath>
       <itemPath>Nucleotide.h</itemPath>
       <itemPath>RandomEnumerator.h</itemPath>
       <itemPath>ScoreEngine.h</itemPath>
@@ -69,6 +70,8 @@
       </item>
       <item path="IDnaSequence.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ISearchEngine.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Nucleotide.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="RandomEnumerator.cpp" ex="false" tool="1" flavor2="0">
@@ -113,6 +116,8 @@
       <item path="IDnaRepository.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="IDnaSequence.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ISearchEngine.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Nucleotide.h" ex="false" tool="3" flavor2="0">
       </item>
