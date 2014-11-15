@@ -16,5 +16,9 @@ int RandomizedSearchEngine::randomPosition(int sequence){
 }
 
 RandomizedSearchEngine::~RandomizedSearchEngine() {
+    delete scoreEngine;
+    delete &bestMotif;
+    delete &startingLoci;
+    delete &profileMatrix;
 }
 
