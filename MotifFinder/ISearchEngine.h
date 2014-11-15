@@ -15,7 +15,7 @@
 class ISearchEngine
 {
     public:
-        virtual void SetRepo(IDnaRepository& input) = 0;
+        virtual void SetRepo(IDnaRepository* input) = 0;
         virtual void Search(int time, int motifLength, int dontCares) = 0;
         virtual std::vector<Nucleotide_t> GetMotif();
         virtual std::vector<int> GetStartingLoci();

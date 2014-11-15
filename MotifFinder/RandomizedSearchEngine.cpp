@@ -6,7 +6,9 @@
  */
 #include <stdlib.h>
 #include <tgmath.h>
+#include <stdexcept>
 #include "RandomizedSearchEngine.h"
+
 
 int RandomizedSearchEngine::randomPosition(int sequence){
     int maxPos = dna->Size(sequence) - 1;
@@ -15,8 +17,15 @@ int RandomizedSearchEngine::randomPosition(int sequence){
     return (int)floor(random);
 }
 
+void RandomizedSearchEngine::SetRepo(IDnaRepository* input){
+    if(input == 0)
+        throw std::invalid_argument("input cannot be 0.");
+    dna = input;
+    scoreEngine.SetRepo(input);
+}
+
 RandomizedSearchEngine::~RandomizedSearchEngine() {
-    delete scoreEngine;
+    delete &scoreEngine;
     delete &bestMotif;
     delete &startingLoci;
     delete &profileMatrix;
