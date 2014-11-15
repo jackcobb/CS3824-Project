@@ -2,27 +2,22 @@
  * File:   DnaSequenceVector.cpp
  * Author: Eric
  * 
- * Created on November 3, 2014, 2:18 PM
+ * Created on November 15, 2014, 3:03 PM
  */
 #include<iostream>
 #include<vector>
-#include "IDnaSequence.h"
+#include "DnaSequenceVector.h"
 using namespace std;
 
-class DnaSequenceVector : IDnaSequence
-{
-    public:
-        
-        DnaSequenceVector(int max_size) {
+        DnaSequenceVector::DnaSequenceVector(int max_size) {
             members = std::vector<Nucleotide_t>(max_size);
-
         }
-        int Size()
+        int DnaSequenceVector::Size()
         {
             return members.size();
         }
         
-        Nucleotide_t Get(int i)
+        Nucleotide_t DnaSequenceVector::Get(int i)
         {
             try{
                 if(i >= Size() || i < 0)
@@ -35,7 +30,7 @@ class DnaSequenceVector : IDnaSequence
             }
         }
     
-        void Set(int i, Nucleotide_t input)
+        void DnaSequenceVector::Set(int i, Nucleotide_t input)
         {
             try{
                 if(i >= DnaSequenceVector::Size() || i < 0)
@@ -48,12 +43,4 @@ class DnaSequenceVector : IDnaSequence
             }
 
         }
-        
-        ~DnaSequenceVector()
-        {
-            delete &members;
-        }
-    private:
-        std::vector<Nucleotide_t> members;
-};
 

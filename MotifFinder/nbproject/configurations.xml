@@ -62,6 +62,8 @@
       </compileType>
       <item path="DnaSequenceVector.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="DnaSequenceVector.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="FastaParser.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="FastaParser.h" ex="false" tool="3" flavor2="0">
@@ -112,6 +114,8 @@
         </asmTool>
       </compileType>
       <item path="DnaSequenceVector.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DnaSequenceVector.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="FastaParser.cpp" ex="false" tool="1" flavor2="0">
       </item>
