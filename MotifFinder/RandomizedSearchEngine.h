@@ -17,7 +17,7 @@ class RandomizedSearchEngine : ISearchEngine{
 public:
     RandomizedSearchEngine();
     RandomizedSearchEngine(IDnaRepository& input);
-    virtual void SetRepo(IDnaRepository* input);
+    virtual void SetRepo(IDnaRepository& input);
     virtual std::vector<Nucleotide_t> GetMotif();
     virtual std::vector<int> GetStartingLoci();
     virtual void Search(int time, int motifLength, int dontCares);
@@ -27,8 +27,10 @@ public:
     virtual ~RandomizedSearchEngine();
 private:
     int randomPosition(int sequence);
+    vector<int> randomLoci();
+    vector<Nucleotide_t> lociToMotif(vector<int> loci, int dontCares);
     IScoreEngine& scoreEngine;
-    IDnaRepository* dna;
+    IDnaRepository& dna;
     vector<Nucleotide_t> bestMotif;
     vector<int> startingLoci;
     vector<vector<Nucleotide_t> > profileMatrix;

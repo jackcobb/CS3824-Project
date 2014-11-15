@@ -11,18 +11,36 @@
 
 
 int RandomizedSearchEngine::randomPosition(int sequence){
-    int maxPos = dna->Size(sequence) - 1;
+    int maxPos = dna.Size(sequence) - 1;
     int i = rand();
     double random = (i / (double)(RAND_MAX)) * maxPos;
     return (int)floor(random);
 }
 
-void RandomizedSearchEngine::SetRepo(IDnaRepository* input){
-    if(input == 0)
-        throw std::invalid_argument("input cannot be 0.");
+void RandomizedSearchEngine::SetRepo(IDnaRepository& input){
     dna = input;
     scoreEngine.SetRepo(input);
 }
+
+vector<int> RandomizedSearchEngine::randomLoci() {
+    vector<int> loci (dna.Size());
+    for(int i = 0; i < dna.Size(); i++)
+    {
+        loci.push_back(i);
+    }
+    return loci;
+}
+
+vector<Nucleotide_t> RandomizedSearchEngine::lociToMotif(vector<int> loci, int motifLength, int dontCares) {
+    //vector<vector<int> > 
+}
+
+
+
+void RandomizedSearchEngine::Search(int time, int motifLength, int dontCares) {
+    
+}
+
 
 RandomizedSearchEngine::~RandomizedSearchEngine() {
     delete &scoreEngine;
