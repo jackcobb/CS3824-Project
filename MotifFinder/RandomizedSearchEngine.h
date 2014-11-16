@@ -20,15 +20,15 @@ public:
     virtual void SetRepo(IDnaRepository& input);
     virtual std::vector<Nucleotide_t> GetMotif();
     virtual std::vector<int> GetStartingLoci();
-    virtual void Search(int time, int motifLength, int dontCares);
+    virtual void Search(double time, int motifLength, int dontCares);
 
 
 
     virtual ~RandomizedSearchEngine();
 private:
-    int randomPosition(int sequence);
-    vector<int> randomLoci();
-    vector<Nucleotide_t> lociToMotif(vector<int> loci, int dontCares);
+    int randomPosition(int sequence, int motifLength);
+    vector<int> randomLoci(int motifLength);
+    vector<Nucleotide_t> lociToMotif(vector<int> loci, int motifLength, int dontCares);
     IScoreEngine& scoreEngine;
     IDnaRepository& dna;
     vector<Nucleotide_t> motif;
