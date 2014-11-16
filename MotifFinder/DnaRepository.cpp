@@ -1,8 +1,8 @@
 /* 
- * File:   DnaSequenceVector.cpp
- * Author: Eric
+ * File:   DnaRepository.cpp
+ * Author: d
  * 
- * Created on November 15, 2014, 3:03 PM
+ * Created on November 16, 2014, 6:44 PM
  */
 #include <cstdlib>
 #include <vector>
@@ -46,13 +46,5 @@ int DnaRepository::Size() {
 int DnaRepository::Size(int i) {
     return 0;
 }   
-
-
-
-
-
-
-
-
 
 

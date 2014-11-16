@@ -2,17 +2,16 @@
  * File:   DnaRepository.h
  * Author: d
  *
- * Created on November 16, 2014, 5:32 PM
+ * Created on November 16, 2014, 6:44 PM
  */
 
 #ifndef DNAREPOSITORY_H
 #define	DNAREPOSITORY_H
-
 #include <vector>
 #include "DnaSequenceVector.h"
 #include "IDnaRepository.h"
 
-class DnaRepository : public IDnaRepository{
+class DnaRepository {
 public:
     DnaRepository(int max_size);
     int Size();
@@ -23,11 +22,10 @@ public:
     Nucleotide_t Get(int sequence, int position);
     void Set(int sequence, int position, Nucleotide_t input);
     void Add(IDnaSequence& input);
-    private:
-        std::vector<DnaSequenceVector> sequences;
+
+private:
+    std::vector<DnaSequenceVector> sequences;
 };
-
-
 
 #endif	/* DNAREPOSITORY_H */
 
