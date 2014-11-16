@@ -6,6 +6,7 @@
  */
 #include <stdlib.h>
 #include <tgmath.h>
+#include <time.h>
 #include <stdexcept>
 #include "RandomizedSearchEngine.h"
 
@@ -41,14 +42,36 @@ vector<Nucleotide_t> RandomizedSearchEngine::lociToMotif(vector<int> loci, int m
 
 
 
-void RandomizedSearchEngine::Search(int time, int motifLength, int dontCares) {
-    
+void RandomizedSearchEngine::Search(double time, int motifLength, int dontCares) {
+    time_t epoch = time(NULL);
+    vector<int> currentLoci;
+    vector<Nucleotide_t> currentMotif;
+    double bestScore = -10, currentScore;
+    do{
+        currentLoci = randomLoci();
+        currentMotif = lociToMotif(currentLoci, motifLength, dontCares);
+        currentScore = scoreEngine.Score(&currentMotif, &currentLoci);
+        if(currentScore > bestScore) {
+            startingLoci = currentLoci;
+            motif = currentMotif;
+        }
+    }while(difftime(epoch, time(NULL) < time));
 }
+
+std::vector<Nucleotide_t> RandomizedSearchEngine::GetMotif() {
+    return motif;
+}
+
+std::vector<int> RandomizedSearchEngine::GetStartingLoci() {
+    return startingLoci;
+}
+
+
 
 
 RandomizedSearchEngine::~RandomizedSearchEngine() {
     delete &scoreEngine;
-    delete &bestMotif;
+    delete &motif;
     delete &startingLoci;
     delete &profileMatrix;
 }

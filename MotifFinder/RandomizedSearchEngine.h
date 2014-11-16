@@ -31,7 +31,7 @@ private:
     vector<Nucleotide_t> lociToMotif(vector<int> loci, int dontCares);
     IScoreEngine& scoreEngine;
     IDnaRepository& dna;
-    vector<Nucleotide_t> bestMotif;
+    vector<Nucleotide_t> motif;
     vector<int> startingLoci;
     vector<vector<Nucleotide_t> > profileMatrix;
 
