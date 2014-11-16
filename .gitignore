@@ -1,3 +1,15 @@
 *.o
 *.d
 *.exe
+/MotifFinder/nbproject/Makefile-Debug.mk
+/MotifFinder/nbproject/Makefile-Release.mk
+/MotifFinder/nbproject/Makefile-impl.mk
+/MotifFinder/nbproject/Makefile-variables.mk
+/MotifFinder/nbproject/Package-Debug.bash
+/MotifFinder/nbproject/Package-Release.bash
+/MotifFinder/nbproject/configurations.xml
+/MotifFinder/nbproject/private/Makefile-variables.mk
+/MotifFinder/nbproject/private/configurations.xml
+/MotifFinder/nbproject/private/launcher.properties
+/MotifFinder/nbproject/private/private.xml
+/MotifFinder/nbproject/project.xml
