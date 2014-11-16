@@ -13,13 +13,13 @@
 
 class IDnaRepository {
 public:
-    virtual int Size();
-    virtual int Size(int i);
-    virtual int Count(Nucleotide_t input);
-    virtual int Count(int sequence, Nucleotide_t input);
+    virtual int Size() = 0;
+    virtual int Size(int i) = 0;
+    virtual int Count(Nucleotide_t input) = 0;
+    virtual int Count(int sequence, Nucleotide_t input) = 0;
     virtual IDnaSequence& Get(int i) =0;
-    Nucleotide_t Get(int sequence, int position);
-    void Set(int sequence, int position, Nucleotide_t input);
+    virtual Nucleotide_t Get(int sequence, int position) =0;
+    virtual void Set(int sequence, int position, Nucleotide_t input) = 0;
     virtual void Add(IDnaSequence& input) = 0;
 private:
 
