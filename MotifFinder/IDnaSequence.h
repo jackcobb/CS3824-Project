@@ -11,10 +11,11 @@
 
 class IDnaSequence {
 public:
+    IDnaSequence();
     virtual int Size() = 0;
     virtual Nucleotide_t Get(int i) = 0;
     virtual void Set(int i, Nucleotide_t input) = 0;
-private:
+    virtual void Push(Nucleotide_t input);
 
 };
 #endif

@@ -21,7 +21,6 @@ public:
     Nucleotide_t Get(int sequence, int position);
     void Set(int sequence, int position, Nucleotide_t input);
     virtual void Add(IDnaSequence& input) = 0;
-    virtual ~IDnaRepository() = 0;
 private:
 
 };
