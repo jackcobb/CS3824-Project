@@ -7,8 +7,10 @@
       <itemPath>FastaParser.h</itemPath>
       <itemPath>IDnaRepository.h</itemPath>
       <itemPath>IDnaSequence.h</itemPath>
+      <itemPath>ISearchEngine.h</itemPath>
       <itemPath>Nucleotide.h</itemPath>
       <itemPath>RandomEnumerator.h</itemPath>
+      <itemPath>RandomizedSearchEngine.h</itemPath>
       <itemPath>ScoreEngine.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -22,6 +24,7 @@
       <itemPath>FastaParser.cpp</itemPath>
       <itemPath>IDnaRepository.cpp</itemPath>
       <itemPath>RandomEnumerator.cpp</itemPath>
+      <itemPath>RandomizedSearchEngine.cpp</itemPath>
       <itemPath>ScoreEngine.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -71,11 +74,17 @@
       </item>
       <item path="IDnaSequence.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ISearchEngine.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Nucleotide.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="RandomEnumerator.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="RandomEnumerator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RandomizedSearchEngine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RandomizedSearchEngine.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ScoreEngine.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -118,11 +127,17 @@
       </item>
       <item path="IDnaSequence.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ISearchEngine.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Nucleotide.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="RandomEnumerator.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="RandomEnumerator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RandomizedSearchEngine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RandomizedSearchEngine.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ScoreEngine.cpp" ex="false" tool="1" flavor2="0">
       </item>
