@@ -15,7 +15,7 @@ using namespace std;
 
 class IScoreEngine {
 public:
-    virtual void SetRepo(IDnaRepository& input);
+    virtual void SetRepo(IDnaRepository& input) =0;
     virtual double Score(vector<Nucleotide_t>& Motif, vector<int>& StartingLoci) = 0;
     
 private:

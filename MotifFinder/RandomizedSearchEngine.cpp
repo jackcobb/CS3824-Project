@@ -36,7 +36,7 @@ vector<Nucleotide_t> RandomizedSearchEngine::lociToMotif(vector<int> loci, int m
     vector<vector<int> > profileMatrix(4);
     for(int i = 0; i < 4; i++)
     {
-        profileMatrix[i](motifLength);
+       // profileMatrix[i](motifLength);
     }
 }
 

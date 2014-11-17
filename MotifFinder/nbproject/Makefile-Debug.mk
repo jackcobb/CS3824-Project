@@ -21,8 +21,8 @@ FC=gfortran
 AS=as
 
 # Macros
-CND_PLATFORM=GNU-MacOSX
-CND_DLIB_EXT=dylib
+CND_PLATFORM=Cygwin_4.x-Windows
+CND_DLIB_EXT=dll
 CND_CONF=Debug
 CND_DISTDIR=dist
 CND_BUILDDIR=build
@@ -63,51 +63,51 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/motiffinder
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/motiffinder.exe
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/motiffinder: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/motiffinder.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/motiffinder ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/DnaRepository.o: DnaRepository.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I. -IFastaParser.h -IIDnaRepository.h -IIDnaSequence.h -INucleotide.h -IRandomEnumerator.h -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DnaRepository.o DnaRepository.cpp
+	$(COMPILE.cc) -g -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DnaRepository.o DnaRepository.cpp
 
 ${OBJECTDIR}/DnaSequenceVector.o: DnaSequenceVector.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I. -IFastaParser.h -IIDnaRepository.h -IIDnaSequence.h -INucleotide.h -IRandomEnumerator.h -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DnaSequenceVector.o DnaSequenceVector.cpp
+	$(COMPILE.cc) -g -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DnaSequenceVector.o DnaSequenceVector.cpp
 
 ${OBJECTDIR}/FastaParser.o: FastaParser.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I. -IFastaParser.h -IIDnaRepository.h -IIDnaSequence.h -INucleotide.h -IRandomEnumerator.h -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FastaParser.o FastaParser.cpp
+	$(COMPILE.cc) -g -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FastaParser.o FastaParser.cpp
 
 ${OBJECTDIR}/IDnaRepository.o: IDnaRepository.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I. -IFastaParser.h -IIDnaRepository.h -IIDnaSequence.h -INucleotide.h -IRandomEnumerator.h -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/IDnaRepository.o IDnaRepository.cpp
+	$(COMPILE.cc) -g -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/IDnaRepository.o IDnaRepository.cpp
 
 ${OBJECTDIR}/RandomEnumerator.o: RandomEnumerator.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I. -IFastaParser.h -IIDnaRepository.h -IIDnaSequence.h -INucleotide.h -IRandomEnumerator.h -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RandomEnumerator.o RandomEnumerator.cpp
+	$(COMPILE.cc) -g -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RandomEnumerator.o RandomEnumerator.cpp
 
 ${OBJECTDIR}/RandomizedSearchEngine.o: RandomizedSearchEngine.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I. -IFastaParser.h -IIDnaRepository.h -IIDnaSequence.h -INucleotide.h -IRandomEnumerator.h -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RandomizedSearchEngine.o RandomizedSearchEngine.cpp
+	$(COMPILE.cc) -g -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RandomizedSearchEngine.o RandomizedSearchEngine.cpp
 
 ${OBJECTDIR}/ScoreEngine.o: ScoreEngine.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I. -IFastaParser.h -IIDnaRepository.h -IIDnaSequence.h -INucleotide.h -IRandomEnumerator.h -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ScoreEngine.o ScoreEngine.cpp
+	$(COMPILE.cc) -g -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ScoreEngine.o ScoreEngine.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I. -IFastaParser.h -IIDnaRepository.h -IIDnaSequence.h -INucleotide.h -IRandomEnumerator.h -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:
@@ -115,7 +115,7 @@ ${OBJECTDIR}/main.o: main.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/motiffinder
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/motiffinder.exe
 
 # Subprojects
 .clean-subprojects:

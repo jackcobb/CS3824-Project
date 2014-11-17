@@ -12,6 +12,8 @@
 #include "RandomEnumerator.h"
 #include "DnaRepository.h"
 #include "FastaParser.h"
+#include "ScoreEngine.h"
+#include "IScoreEngine.h"
 using namespace std;
 
 /*
@@ -27,5 +29,14 @@ int main(int argc, char** argv)
     {
         parser.Parse(stream, repo);
     }
+    
+    ScoreEngine scorer = ScoreEngine(repo);
+    vector<Nucleotide_t> motif (1,T);
+    vector<int> loci = vector<int>();
+    loci.push_back(1);
+    loci.push_back(1);
+    
+    int i = scorer.Score(motif, loci);
+    return 0;
 }
 

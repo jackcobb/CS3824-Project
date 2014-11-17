@@ -8,18 +8,11 @@
 #include <math.h>
 #include "ScoreEngine.h"
 
-
-ScoreEngine::ScoreEngine() {
-    DNA = 0;
+ScoreEngine::ScoreEngine(IDnaRepository& repo) :DNA(repo) {
     ProbabilityMatrix = vector<double>();
 }
 
-ScoreEngine::ScoreEngine(IDnaRepository* repo) {
-    SetRepo(repo);
-    ProbabilityMatrix = vector<double>();
-}
-
-void ScoreEngine::SetRepo(IDnaRepository* repo){
+void ScoreEngine::SetRepo(IDnaRepository& repo){
     DNA = repo;
 }
 
@@ -46,7 +39,7 @@ void ScoreEngine::ResizeProbabilityMatrix(int newSize)
 
 bool ScoreEngine::ValidateStartingLoci(int motifSize, vector<int>& starting_loci) {
     int loci_size = starting_loci.size();
-    int dna_size = DNA->Size();
+    int dna_size = DNA.Size();
     if(loci_size != dna_size)
         return false;
     for(int i = 0; i < loci_size; i++)
@@ -66,12 +59,12 @@ void ScoreEngine::UpdateProbabilityMatrix(vector<Nucleotide_t>& motif, vector<in
         {
             comparer = motif[motifPosition];
             columnCount = 0;
-            for(int j = 0; j < DNA->Size(); j++)
+            for(int j = 0; j < DNA.Size(); j++)
             {
-                if(DNA->Get(j, motifPosition + starting_loci[j]) == comparer)
+                if(DNA.Get(j, motifPosition + starting_loci[j]) == comparer)
                     columnCount++;
             }
-            ProbabilityMatrix[matrixPosition] = columnCount / motif.size();
+            ProbabilityMatrix[matrixPosition] = columnCount / DNA.Size();
             matrixPosition++;        
         }
     }
@@ -80,10 +73,10 @@ void ScoreEngine::UpdateProbabilityMatrix(vector<Nucleotide_t>& motif, vector<in
 
 double ScoreEngine::LogProductProbMatrix(vector<Nucleotide_t>& motif) {
     double glob_prob[]=  {
-        DNA->Count(A) / DNA->Size(),
-        DNA->Count(T) / DNA->Size(),
-        DNA->Count(G) / DNA->Size(),
-        DNA->Count(C) / DNA->Size()};
+        DNA.Count(A) / DNA.Size(),
+        DNA.Count(T) / DNA.Size(),
+        DNA.Count(G) / DNA.Size(),
+        DNA.Count(C) / DNA.Size()};
     double runningSum = 0;
     for(int motifIndex = 0, matrixIndex = 0; motifIndex < motif.size(); motifIndex++)
     {
@@ -97,7 +90,6 @@ double ScoreEngine::LogProductProbMatrix(vector<Nucleotide_t>& motif) {
 
 
 ScoreEngine::~ScoreEngine(){
-    delete &ProbabilityMatrix;
 }
 
 
