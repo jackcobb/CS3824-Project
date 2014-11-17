@@ -35,11 +35,13 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/DnaRepository.o \
 	${OBJECTDIR}/DnaSequenceVector.o \
 	${OBJECTDIR}/FastaParser.o \
 	${OBJECTDIR}/IDnaRepository.o \
+	${OBJECTDIR}/IRunner.o \
 	${OBJECTDIR}/RandomEnumerator.o \
-	${OBJECTDIR}/RandomizedSearchEngine.o \
+	${OBJECTDIR}/Runner.o \
 	${OBJECTDIR}/ScoreEngine.o \
 	${OBJECTDIR}/main.o
 
@@ -68,6 +70,11 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/motiffinder.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/motiffinder ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/DnaRepository.o: DnaRepository.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DnaRepository.o DnaRepository.cpp
+
 ${OBJECTDIR}/DnaSequenceVector.o: DnaSequenceVector.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -83,15 +90,20 @@ ${OBJECTDIR}/IDnaRepository.o: IDnaRepository.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/IDnaRepository.o IDnaRepository.cpp
 
+${OBJECTDIR}/IRunner.o: IRunner.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/IRunner.o IRunner.cpp
+
 ${OBJECTDIR}/RandomEnumerator.o: RandomEnumerator.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RandomEnumerator.o RandomEnumerator.cpp
 
-${OBJECTDIR}/RandomizedSearchEngine.o: RandomizedSearchEngine.cpp 
+${OBJECTDIR}/Runner.o: Runner.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RandomizedSearchEngine.o RandomizedSearchEngine.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Runner.o Runner.cpp
 
 ${OBJECTDIR}/ScoreEngine.o: ScoreEngine.cpp 
 	${MKDIR} -p ${OBJECTDIR}
