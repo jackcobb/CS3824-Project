@@ -19,32 +19,42 @@ void DnaRepository::Add(DnaSequenceVector& input) {
 }
 
 int DnaRepository::Count(Nucleotide_t input) {
-    return 0;
+    int count = 0;
+    for(int i = 0; i < Size(); i++)
+    {
+        count += Count(i, input);
+    }
+    return count;
 }
 
 int DnaRepository::Count(int sequence, Nucleotide_t input) {
-    return 0;
+    int count = 0;
+    for(int i = 0; i < Size(sequence); i++)
+    {
+        if(Get(sequence, i) == input)
+            count++;
+    }
+    return count;
 }
 
 IDnaSequence& DnaRepository::Get(int i) {
-    DnaSequenceVector a(123);
-    return a;
+    return sequences[i];
 }
 
 Nucleotide_t DnaRepository::Get(int sequence, int position) {
-    return DC;
+    return Get(sequence).Get(position);
 }
 
 void DnaRepository::Set(int sequence, int position, Nucleotide_t input) {
-
+    Get(sequence).Set(position, input);
 }
 
 int DnaRepository::Size() {
-    return 0;
+    return sequences.size();
 }
 
 int DnaRepository::Size(int i) {
-    return 0;
+    return Get(i).Size();
 }   
 
 

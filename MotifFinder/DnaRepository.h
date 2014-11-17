@@ -11,7 +11,7 @@
 #include "DnaSequenceVector.h"
 #include "IDnaRepository.h"
 
-class DnaRepository : public IDnaRepository{
+class DnaRepository : public IDnaRepository {
 public:
     DnaRepository(int max_size);
     int Size();
