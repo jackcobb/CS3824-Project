@@ -12,8 +12,8 @@
 
 using namespace std;
 
-        DnaSequenceVector::DnaSequenceVector(int max_size) {
-            members = std::vector<Nucleotide_t>(max_size);
+        DnaSequenceVector::DnaSequenceVector() {
+            members = std::vector<Nucleotide_t>();
         }
         int DnaSequenceVector::Size()
         {

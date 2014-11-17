@@ -11,7 +11,7 @@
 using namespace std;
 
 DnaRepository::DnaRepository(int max_size) {
-            sequences = std::vector<DnaSequenceVector> (max_size, DnaSequenceVector(512));
+            sequences = std::vector<DnaSequenceVector> ();
 }
 
 void DnaRepository::Add(DnaSequenceVector& input) {
