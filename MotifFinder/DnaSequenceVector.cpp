@@ -55,6 +55,5 @@ using namespace std;
         
         DnaSequenceVector::~DnaSequenceVector()
         {
-            delete &members;
         }
         
