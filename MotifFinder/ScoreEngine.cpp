@@ -68,7 +68,7 @@ void ScoreEngine::UpdateProbabilityMatrix(vector<Nucleotide_t>& motif, vector<in
             columnCount = 0;
             for(int j = 0; j < DNA->Size(); j++)
             {
-                if(DNA->Get(j, motifPosition) == comparer)
+                if(DNA->Get(j, motifPosition + starting_loci[j]) == comparer)
                     columnCount++;
             }
             ProbabilityMatrix[matrixPosition] = columnCount / motif.size();

@@ -19,10 +19,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Eric/Documents/GitHub/CS3284-Project/MotifFinder/IDnaSequence.h</file>
+            <file>file:/C:/Users/Eric/Documents/GitHub/CS3284-Project/MotifFinder/Nucleotide.h</file>
             <file>file:/C:/Users/Eric/Documents/GitHub/CS3284-Project/MotifFinder/ScoreEngine.cpp</file>
             <file>file:/C:/Users/Eric/Documents/GitHub/CS3284-Project/MotifFinder/ScoreEngine.h</file>
-            <file>file:/C:/Users/Eric/Documents/GitHub/CS3284-Project/MotifFinder/DnaSequenceVector.cpp</file>
+            <file>file:/C:/Users/Eric/Documents/GitHub/CS3284-Project/MotifFinder/FastaParser.h</file>
         </group>
     </open-files>
 </project-private>
