@@ -16,6 +16,7 @@ public:
     DnaRepository(int max_size);
     int Size();
     int Size(int i);
+    int Count();
     int Count(Nucleotide_t input);
     int Count(int sequence, Nucleotide_t input);
     IDnaSequence& Get(int i);

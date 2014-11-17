@@ -31,12 +31,15 @@ int main(int argc, char** argv)
     }
     
     ScoreEngine scorer = ScoreEngine(repo);
-    vector<Nucleotide_t> motif (1,T);
+    vector<Nucleotide_t> motif = vector<Nucleotide_t>();
+    motif.push_back(A);
+    motif.push_back(DC);
+    motif.push_back(A);
     vector<int> loci = vector<int>();
-    loci.push_back(1);
-    loci.push_back(1);
+    loci.push_back(2);
+    loci.push_back(2);
     
-    int i = scorer.Score(motif, loci);
+    double i = scorer.Score(motif, loci);
     return 0;
 }
 
