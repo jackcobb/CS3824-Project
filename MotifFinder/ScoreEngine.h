@@ -9,19 +9,19 @@
 #define	SCOREENGINE_H
 #include <vector>
 #include "Nucleotide.h"
+#include "IScoreEngine.h"
 #include "IDnaRepository.h"
 
 using namespace std;
 
-class ScoreEngine {
+class ScoreEngine : public IScoreEngine {
 public:
-    ScoreEngine();
-    ScoreEngine(IDnaRepository* repo);
-    void SetRepo(IDnaRepository* repo);
+    ScoreEngine(IDnaRepository& repo);
+    void SetRepo(IDnaRepository& repo);
     double Score(vector<Nucleotide_t>& motif, vector<int>& starting_loci);
     virtual ~ScoreEngine();
 private:
-    IDnaRepository* DNA;
+    IDnaRepository& DNA;
     //Indexed [Nucleotide][Position]
     vector<double> ProbabilityMatrix;
     void ResizeProbabilityMatrix(int newSize);

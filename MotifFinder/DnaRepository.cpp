@@ -18,6 +18,16 @@ void DnaRepository::Add(DnaSequenceVector& input) {
     sequences.push_back(input);
 }
 
+int DnaRepository::Count() {
+    int count = 0;
+    for(int i = 0; i < Size(); i++)
+    {
+        count += Size(i);
+    }
+    return count;
+}
+
+
 int DnaRepository::Count(Nucleotide_t input) {
     int count = 0;
     for(int i = 0; i < Size(); i++)
