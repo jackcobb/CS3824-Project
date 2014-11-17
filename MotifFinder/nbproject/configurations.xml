@@ -4,11 +4,14 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>DnaRepository.h</itemPath>
       <itemPath>FastaParser.h</itemPath>
       <itemPath>IDnaRepository.h</itemPath>
       <itemPath>IDnaSequence.h</itemPath>
+      <itemPath>ISearchEngine.h</itemPath>
       <itemPath>Nucleotide.h</itemPath>
       <itemPath>RandomEnumerator.h</itemPath>
+      <itemPath>RandomizedSearchEngine.h</itemPath>
       <itemPath>ScoreEngine.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -18,12 +21,25 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>DnaRepository.cpp</itemPath>
       <itemPath>DnaSequenceVector.cpp</itemPath>
       <itemPath>FastaParser.cpp</itemPath>
       <itemPath>IDnaRepository.cpp</itemPath>
       <itemPath>RandomEnumerator.cpp</itemPath>
+      <itemPath>RandomizedSearchEngine.cpp</itemPath>
       <itemPath>ScoreEngine.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -57,6 +73,10 @@
           </incDir>
         </ccTool>
       </compileType>
+      <item path="DnaRepository.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DnaRepository.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DnaSequenceVector.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="FastaParser.cpp" ex="false" tool="1" flavor2="0">
@@ -69,11 +89,17 @@
       </item>
       <item path="IDnaSequence.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ISearchEngine.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Nucleotide.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="RandomEnumerator.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="RandomEnumerator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RandomizedSearchEngine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RandomizedSearchEngine.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ScoreEngine.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -102,6 +128,10 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="DnaRepository.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DnaRepository.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DnaSequenceVector.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="FastaParser.cpp" ex="false" tool="1" flavor2="0">
@@ -114,11 +144,17 @@
       </item>
       <item path="IDnaSequence.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ISearchEngine.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Nucleotide.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="RandomEnumerator.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="RandomEnumerator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RandomizedSearchEngine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RandomizedSearchEngine.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ScoreEngine.cpp" ex="false" tool="1" flavor2="0">
       </item>
