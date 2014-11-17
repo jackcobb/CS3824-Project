@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>DnaRepository.h</itemPath>
       <itemPath>FastaParser.h</itemPath>
       <itemPath>IDnaRepository.h</itemPath>
       <itemPath>IDnaSequence.h</itemPath>
@@ -20,6 +21,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>DnaRepository.cpp</itemPath>
       <itemPath>DnaSequenceVector.cpp</itemPath>
       <itemPath>FastaParser.cpp</itemPath>
       <itemPath>IDnaRepository.cpp</itemPath>
@@ -27,6 +29,17 @@
       <itemPath>RandomizedSearchEngine.cpp</itemPath>
       <itemPath>ScoreEngine.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -60,9 +73,11 @@
           </incDir>
         </ccTool>
       </compileType>
-      <item path="DnaSequenceVector.cpp" ex="false" tool="1" flavor2="0">
+      <item path="DnaRepository.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="DnaSequenceVector.h" ex="false" tool="3" flavor2="0">
+      <item path="DnaRepository.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DnaSequenceVector.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="FastaParser.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -113,9 +128,11 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="DnaSequenceVector.cpp" ex="false" tool="1" flavor2="0">
+      <item path="DnaRepository.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="DnaSequenceVector.h" ex="false" tool="3" flavor2="0">
+      <item path="DnaRepository.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DnaSequenceVector.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="FastaParser.cpp" ex="false" tool="1" flavor2="0">
       </item>
