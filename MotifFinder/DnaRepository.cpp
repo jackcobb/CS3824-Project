@@ -14,8 +14,8 @@ DnaRepository::DnaRepository(int max_size) {
             sequences = std::vector<DnaSequenceVector> (max_size, DnaSequenceVector(512));
 }
 
-void DnaRepository::Add(IDnaSequence& input) {
-
+void DnaRepository::Add(DnaSequenceVector& input) {
+    sequences.push_back(input);
 }
 
 int DnaRepository::Count(Nucleotide_t input) {
@@ -26,7 +26,7 @@ int DnaRepository::Count(int sequence, Nucleotide_t input) {
     return 0;
 }
 
-IDnaSequence DnaRepository::Get(int i) {
+IDnaSequence& DnaRepository::Get(int i) {
     DnaSequenceVector a(123);
     return a;
 }

@@ -25,54 +25,43 @@ FastaParser::~FastaParser() {
 void FastaParser::Parse(std::ifstream& file, IDnaRepository& repo)
 {
     string line;
-    
-    file.open("input.fasta");
-    
-    if (file)
+    while (getline(file, line))
     {
-        while (getline(file, line))
+        if (line[0] == '<')
         {
-            if (line[0] == '<')
-            {
-                continue;
-            }
-            else
-            {
-                DnaSequenceVector vector(512);
-                Nucleotide_t a = A;
-                Nucleotide_t c = C;
-                Nucleotide_t g = G;
-                Nucleotide_t t = T;
-                
-                for (int i = 0; i < line.length(); i++)
-                {
-                    if (line[i] == T)
-                    {
-                        vector.Push(t);
-                    }
-                    else if (line[i] == A)
-                    {
-                        vector.Push(a);
-                    }
-                    else if (line[i] == G)
-                    {
-                        vector.Push(g);
-                    }
-                    else if (line[i] == C)
-                    {
-                        vector.Push(c);
-                    }
-                }
-                
-                repo.Add(vector);
-            }
-            
+            continue;
         }
-    }
-    
-    else
-    {
-        //file is bad
+        else
+        {
+            DnaSequenceVector vector(512);
+            Nucleotide_t a = A;
+            Nucleotide_t c = C;
+            Nucleotide_t g = G;
+            Nucleotide_t t = T;
+
+            for (int i = 0; i < line.length(); i++)
+            {
+                if (line[i] == T)
+                {
+                    vector.Push(t);
+                }
+                else if (line[i] == A)
+                {
+                    vector.Push(a);
+                }
+                else if (line[i] == G)
+                {
+                    vector.Push(g);
+                }
+                else if (line[i] == C)
+                {
+                    vector.Push(c);
+                }
+            }
+
+            repo.Add(vector);
+        }
+
     }
 }
 

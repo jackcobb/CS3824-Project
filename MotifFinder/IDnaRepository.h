@@ -9,6 +9,7 @@
 #define	IDNAREPOSITORY_H
 
 #include "IDnaSequence.h"
+#include "DnaSequenceVector.h"
 
 
 class IDnaRepository {
@@ -20,7 +21,7 @@ public:
     virtual IDnaSequence& Get(int i) =0;
     virtual Nucleotide_t Get(int sequence, int position) =0;
     virtual void Set(int sequence, int position, Nucleotide_t input) = 0;
-    virtual void Add(IDnaSequence& input) = 0;
+    virtual void Add(DnaSequenceVector& input) = 0;
 private:
 
 };
