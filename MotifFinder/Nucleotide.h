@@ -1,5 +1,5 @@
 /* 
- * File:   Neocleotide.h
+ * File:   Nucleotide.h
  * Author: Eric
  *
  * Created on November 3, 2014, 1:48 PM
