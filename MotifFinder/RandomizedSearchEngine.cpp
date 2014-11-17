@@ -120,12 +120,12 @@ std::vector<int> RandomizedSearchEngine::GetStartingLoci() {
 }
 
 RandomizedSearchEngine::~RandomizedSearchEngine() {
-    delete &scoreEngine;
-    delete &motif;
-    delete &startingLoci;
-    delete &profileMatrix;
-    delete &dontCares;
-    delete &motifLength;
+//    delete &scoreEngine;
+//    delete &motif;
+//    delete &startingLoci;
+//    delete &profileMatrix;
+//    delete &dontCares;
+//    delete &motifLength;
 }
 
 RandomizedSearchEngine::RandomizedSearchEngine(IDnaRepository* input, int motiflength, 

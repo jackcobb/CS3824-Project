@@ -97,7 +97,7 @@ double ScoreEngine::LogProductProbMatrix(vector<Nucleotide_t>& motif) {
 
 
 ScoreEngine::~ScoreEngine(){
-    delete &ProbabilityMatrix;
+    //delete &ProbabilityMatrix;
 }
 
 
