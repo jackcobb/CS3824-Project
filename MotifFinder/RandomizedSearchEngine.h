@@ -15,20 +15,17 @@ using namespace std;
 
 class RandomizedSearchEngine : ISearchEngine{
 public:
-    RandomizedSearchEngine(IDnaRepository* input, int motiflength, int dontcares);
+    RandomizedSearchEngine(IDnaRepository& input, int motiflength, int dontcares);
     virtual void SetRepo(IDnaRepository& input);
     virtual std::vector<Nucleotide_t> GetMotif();
     virtual std::vector<int> GetStartingLoci();
     virtual void Search(double time);
-
-
-
     virtual ~RandomizedSearchEngine();
 private:
     int randomPosition(int sequence);
     vector<int> randomLoci();
     vector<Nucleotide_t> lociToMotif(vector<int> loci);
-    ScoreEngine& scoreEngine;
+    ScoreEngine scoreEngine;
     IDnaRepository& dna;
     vector<Nucleotide_t> motif;
     int motifLength;

@@ -10,6 +10,12 @@
 #include <stdexcept>
 #include "RandomizedSearchEngine.h"
 
+RandomizedSearchEngine::RandomizedSearchEngine(IDnaRepository& input, int motiflength, int dontcares) : dna(input), scoreEngine(ScoreEngine(input)){
+    dontCares = dontcares;
+    motifLength = motiflength;
+    //create profile matrix and fill with all 0s of 4 columns and motiflength rows
+    profileMatrix.resize(4, vector<int>(motifLength, 0));
+}
 
 int RandomizedSearchEngine::randomPosition(int sequence){
     int maxPos = dna.Size(sequence) - motifLength;
@@ -27,7 +33,7 @@ vector<int> RandomizedSearchEngine::randomLoci() {
     vector<int> loci (dna.Size());
     for(int i = 0; i < dna.Size(); i++)
     {
-        loci.push_back(randomPosition(i, motifLength));
+        loci.push_back(randomPosition(i));
     }
     return loci;
 }
@@ -38,11 +44,10 @@ vector<Nucleotide_t> RandomizedSearchEngine::lociToMotif(vector<int> loci) {
     vector<Nucleotide_t> startMotif = vector<Nucleotide_t>();
     vector<Nucleotide_t> currentMotif;
     profileMatrix = createProfileMatrix(loci); //get a motif from matrix with the loci
-    startMotif = getStartingMotif(profileMatrix, startMotif, motifLength);
-    currentMotif = new(startMotif);         //copies over contents, not just reference
+    startMotif = getStartingMotif(profileMatrix, startMotif);
+    currentMotif = startMotif;         //copies over contents, not just reference
     for (int j = 0; j < dontCares; j++){    //create initial starting motif with dont cares
-        currentMotif.erase(j+1);
-        currentMotif.insert(j+1, 4);
+        currentMotif[j+1] = DC;
     }     //try all valid positions of the motif with don't cares in valid locations
     while (canIncrement(currentMotif)){ //change the location of the dont care
         currentMotif = increment(currentMotif, startMotif);
@@ -50,7 +55,7 @@ vector<Nucleotide_t> RandomizedSearchEngine::lociToMotif(vector<int> loci) {
         double currentMotifScore = scoreEngine.Score(currentMotif, loci);
         if (bestMotifScore < currentMotifScore){
             bestMotifScore = currentMotifScore;
-            bestMotif = new(currentMotif);
+            bestMotif = currentMotif;
         }
     } //return the best scoring motif w/ don't cares placed
     return bestMotif;
@@ -67,8 +72,7 @@ vector<Nucleotide_t> RandomizedSearchEngine::increment(vector<Nucleotide_t> moti
         if (location != 0 && motif.at(location) == 4){//not at end and is a dc
             if (motif.at(location + 1) != 4){
                 moved = true;
-                motif.erase(location);
-                motif.insert(location, startMotif.at(location));
+                motif[location] = startMotif[location];
             } else {
                 locations.push_back(location);
             }
@@ -77,9 +81,8 @@ vector<Nucleotide_t> RandomizedSearchEngine::increment(vector<Nucleotide_t> moti
     } //iterated the dc one spot forward. move all to the right of loc leftmost
     int size = locations.size();
     for (int i = 0; i < size; i++){
-        int whereInMotif = locations.pop_back();
-        motif.erase(whereInMotif);
-        motif.insert(whereInMotif, startMotif.at(whereInMotif));
+        int whereInMotif = locations[i];
+        motif[whereInMotif] = startMotif[whereInMotif];
     }
     return motif;
 }
@@ -119,27 +122,8 @@ std::vector<int> RandomizedSearchEngine::GetStartingLoci() {
     return startingLoci;
 }
 
-RandomizedSearchEngine::~RandomizedSearchEngine() {
-//    delete &scoreEngine;
-//    delete &motif;
-//    delete &startingLoci;
-//    delete &profileMatrix;
-//    delete &dontCares;
-//    delete &motifLength;
-}
-
-RandomizedSearchEngine::RandomizedSearchEngine(IDnaRepository* input, int motiflength, 
-        int dontcares){
-    dontCares = dontcares;
-    motifLength = motiflength;
-    scoreEngine = ScoreEngine();
-    //create profile matrix and fill with all 0s of 4 columns and motiflength rows
-    profileMatrix.resize(4, vector<int>(motifLength, 0));
-    dna = input;
-}
-
 int RandomizedSearchEngine::getMax(int a, int t, int g, int c){
-    max = a;
+    int max = a;
     if (max > t)   
         max = t;
     if (max < g)
@@ -149,21 +133,21 @@ int RandomizedSearchEngine::getMax(int a, int t, int g, int c){
     return max;
 }
 vector<Nucleotide_t> RandomizedSearchEngine::getStartingMotif(vector<vector<int> > profileMatrix, 
-        vector<Nucleotide_t> motif, int length){
-    for (int k = 0; k < length; k++) { //get most probable (0, 1, 2, 3) at k and add to startMotif
+        vector<Nucleotide_t> motif){
+    for (int k = 0; k < motifLength; k++) { //get most probable (0, 1, 2, 3) at k and add to startMotif
         int a = profileMatrix[0][k];
         int t = profileMatrix[1][k];
         int g = profileMatrix[2][k];
         int c = profileMatrix[3][k];
         int max = getMax(a, t, g, c);
         if (max == a)  
-            motif.push_back(0);
+            motif.push_back(A);
         else if (max == t) 
-            motif.push_back(1);
+            motif.push_back(T);
         else if (max == g) 
-            motif.push_back(2);
+            motif.push_back(G);
         else    
-            motif.push_back(3);
+            motif.push_back(C);
     }
     return motif;
 }
@@ -171,8 +155,7 @@ vector<Nucleotide_t> RandomizedSearchEngine::getStartingMotif(vector<vector<int>
 vector<vector<int> > RandomizedSearchEngine :: createProfileMatrix(vector<int> loci){
     for (int i = 0; i < motifLength; i++){
         int dnaSize = dna.Size();
-        vector<int> counts(4);
-        counts = {0, 0, 0, 0};
+        vector<int> counts(4, 0);
         for (int j = 0; j < dnaSize; j++){
             int nucleotide = dna.Get(j, loci[j] + i);
             counts[nucleotide] += 1;
@@ -183,4 +166,13 @@ vector<vector<int> > RandomizedSearchEngine :: createProfileMatrix(vector<int> l
         profileMatrix[3][i] = counts.at(3);
     }
     return profileMatrix;
+}
+
+RandomizedSearchEngine::~RandomizedSearchEngine() {
+//    delete &scoreEngine;
+//    delete &motif;
+//    delete &startingLoci;
+//    delete &profileMatrix;
+//    delete &dontCares;
+//    delete &motifLength;
 }

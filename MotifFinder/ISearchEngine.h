@@ -15,10 +15,10 @@
 class ISearchEngine
 {
     public:
-        virtual void SetRepo(IDnaRepository* input) = 0;
-        virtual void Search(int time) = 0;
-        virtual std::vector<Nucleotide_t> GetMotif();
-        virtual std::vector<int> GetStartingLoci();
+        virtual void SetRepo(IDnaRepository& input) = 0;
+        virtual void Search(double time) = 0;
+        virtual std::vector<Nucleotide_t> GetMotif() = 0;
+        virtual std::vector<int> GetStartingLoci() = 0;
 };
 
 #endif	/* ISEARCHENGINE_H */

@@ -11,7 +11,6 @@
 ScoreEngine::ScoreEngine(IDnaRepository& repo) :DNA(repo) {
     ProbabilityMatrix = vector<double>();
 }
-
 void ScoreEngine::SetRepo(IDnaRepository& repo){
     DNA = repo;
 }
