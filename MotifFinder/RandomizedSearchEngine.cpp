@@ -13,6 +13,7 @@
 RandomizedSearchEngine::RandomizedSearchEngine(IDnaRepository& input, int motiflength, int dontcares) : dna(input), scoreEngine(ScoreEngine(input)){
     dontCares = dontcares;
     motifLength = motiflength;
+    score = -10;
     //create profile matrix and fill with all 0s of 4 columns and motiflength rows
     profileMatrix.resize(4, vector<int>(motifLength, 0));
 }
@@ -112,17 +113,23 @@ void RandomizedSearchEngine::Search(double runTime) {
     epoch = time(NULL);
     vector<int> currentLoci;
     vector<Nucleotide_t> currentMotif;
-    double bestScore = -10, currentScore;
+    double currentScore;
     do{
         currentLoci = randomLoci();
         currentMotif = lociToMotif(currentLoci);
         currentScore = scoreEngine.Score(currentMotif, currentLoci);
-        if(currentScore > bestScore) {
+        if(currentScore > score) {
             startingLoci = currentLoci;
             motif = currentMotif;
+            score = currentScore;
         }
     }while(difftime(time(NULL), epoch) < runTime);
 }
+
+double RandomizedSearchEngine::GetBestScore() {
+    return score;
+}
+
 
 std::vector<Nucleotide_t> RandomizedSearchEngine::GetMotif() {
     return motif;
@@ -178,11 +185,22 @@ vector<vector<int> > RandomizedSearchEngine :: createProfileMatrix(vector<int> l
     return profileMatrix;
 }
 
+int RandomizedSearchEngine::GetDontCareCount() {
+    return dontCares;
+}
+
+int RandomizedSearchEngine::GetMotifLength() {
+    return motifLength;
+}
+
+void RandomizedSearchEngine::SetDontCares(int number) {
+    dontCares = number;
+}
+
+void RandomizedSearchEngine::SetMotifLength(int length) {
+    motifLength = length;
+}
+
+
 RandomizedSearchEngine::~RandomizedSearchEngine() {
-//    delete &scoreEngine;
-//    delete &motif;
-//    delete &startingLoci;
-//    delete &profileMatrix;
-//    delete &dontCares;
-//    delete &motifLength;
 }
