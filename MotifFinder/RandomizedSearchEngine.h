@@ -13,13 +13,18 @@
 
 using namespace std;
 
-class RandomizedSearchEngine : ISearchEngine{
+class RandomizedSearchEngine : public ISearchEngine{
 public:
     RandomizedSearchEngine(IDnaRepository& input, int motiflength, int dontcares);
     virtual void SetRepo(IDnaRepository& input);
     virtual std::vector<Nucleotide_t> GetMotif();
     virtual std::vector<int> GetStartingLoci();
     virtual void Search(double time);
+    virtual int GetDontCareCount();
+    virtual int GetMotifLength();
+    virtual void SetDontCares(int number);
+    virtual void SetMotifLength(int length);
+    virtual double GetBestScore();
     virtual ~RandomizedSearchEngine();
 private:
     int randomPosition(int sequence);
@@ -30,6 +35,7 @@ private:
     vector<Nucleotide_t> motif;
     int motifLength;
     int dontCares;
+    double score;
     vector<int> startingLoci;
     vector<vector<int> > profileMatrix;
     bool canIncrement(vector<Nucleotide_t> motif);
