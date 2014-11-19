@@ -30,7 +30,7 @@ void RandomizedSearchEngine::SetRepo(IDnaRepository& input){
 }
 
 vector<int> RandomizedSearchEngine::randomLoci() {
-    vector<int> loci (dna.Size());
+    vector<int> loci = vector<int>();
     for(int i = 0; i < dna.Size(); i++)
     {
         loci.push_back(randomPosition(i));
@@ -45,7 +45,14 @@ vector<Nucleotide_t> RandomizedSearchEngine::lociToMotif(vector<int> loci) {
     vector<Nucleotide_t> currentMotif;
     profileMatrix = createProfileMatrix(loci); //get a motif from matrix with the loci
     startMotif = getStartingMotif(profileMatrix, startMotif);
-    currentMotif = startMotif;         //copies over contents, not just reference
+    currentMotif = startMotif;
+    for (int i = 0; i < dontCares; i++){
+        currentMotif[i + 1] = DC;
+    }//copies over contents, not just reference
+    bestMotif = currentMotif;
+    if (dontCares == 0){
+        return currentMotif;
+    }
     for (int j = 0; j < dontCares; j++){    //create initial starting motif with dont cares
         currentMotif[j+1] = DC;
     }     //try all valid positions of the motif with don't cares in valid locations
@@ -69,32 +76,35 @@ vector<Nucleotide_t> RandomizedSearchEngine::increment(vector<Nucleotide_t> moti
     int vectorSize = motif.size();
     int location = vectorSize - 3;
     while (!moved){
-        if (location != 0 && motif.at(location) == 4){//not at end and is a dc
-            if (motif.at(location + 1) != 4){
-                moved = true;
+        if (location != 0 && motif[location] == 4){
+            if(motif[location + 1] != 4)
+            {
+                motif[location + 1] = DC;
                 motif[location] = startMotif[location];
+                moved = true;
             } else {
                 locations.push_back(location);
+                motif[location] = startMotif[location];
             }
         }
         location--;
     } //iterated the dc one spot forward. move all to the right of loc leftmost
+    location += 3;
     int size = locations.size();
     for (int i = 0; i < size; i++){
-        int whereInMotif = locations[i];
-        motif[whereInMotif] = startMotif[whereInMotif];
+        motif[location + i] = DC;
     }
     return motif;
 }
 bool RandomizedSearchEngine::canIncrement(vector<Nucleotide_t> motif){
     //start at back of vector and check if all dcs (4s) are at the back 
     int vectorSize = motif.size();
-    for (int i = 1; i <= dontCares; i++){
-        if (motif.at(vectorSize - (1 + i)) != 4){
-            return false;
+    for (int i = 0; i < dontCares; i++){
+        if (motif[vectorSize - (2 + i)] != 4){
+            return true;
         }
     }
-    return true;
+    return false;
 }
 
 void RandomizedSearchEngine::Search(double runTime) {
@@ -111,7 +121,7 @@ void RandomizedSearchEngine::Search(double runTime) {
             startingLoci = currentLoci;
             motif = currentMotif;
         }
-    }while(difftime(epoch, time(NULL) < runTime));
+    }while(difftime(time(NULL), epoch) < runTime);
 }
 
 std::vector<Nucleotide_t> RandomizedSearchEngine::GetMotif() {
@@ -160,10 +170,10 @@ vector<vector<int> > RandomizedSearchEngine :: createProfileMatrix(vector<int> l
             int nucleotide = dna.Get(j, loci[j] + i);
             counts[nucleotide] += 1;
         }
-        profileMatrix[0][i] = counts.at(0);
-        profileMatrix[1][i] = counts.at(1);
-        profileMatrix[2][i] = counts.at(2);
-        profileMatrix[3][i] = counts.at(3);
+        profileMatrix[0][i] = counts[0];
+        profileMatrix[1][i] = counts[1];
+        profileMatrix[2][i] = counts[2];
+        profileMatrix[3][i] = counts[3];
     }
     return profileMatrix;
 }
