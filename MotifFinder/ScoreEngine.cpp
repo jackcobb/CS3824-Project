@@ -11,7 +11,6 @@
 ScoreEngine::ScoreEngine(IDnaRepository& repo) :DNA(repo) {
     ProbabilityMatrix = vector<double>();
 }
-
 void ScoreEngine::SetRepo(IDnaRepository& repo){
     DNA = repo;
 }
@@ -64,7 +63,7 @@ void ScoreEngine::UpdateProbabilityMatrix(vector<Nucleotide_t>& motif, vector<in
                 if(DNA.Get(j, motifPosition + starting_loci[j]) == comparer)
                     columnCount++;
             }
-            ProbabilityMatrix[matrixPosition] = columnCount / DNA.Size();
+            ProbabilityMatrix[matrixPosition] = columnCount / (double) DNA.Size();
             matrixPosition++;        
         }
     }
@@ -84,7 +83,7 @@ double ScoreEngine::LogProductProbMatrix(vector<Nucleotide_t>& motif) {
     {
         if(motif[motifIndex] != DC)
         {
-            runningSum += log2(ProbabilityMatrix[matrixIndex] / glob_prob[motif[motifIndex]]);
+            runningSum += log2(ProbabilityMatrix[matrixIndex] /(double) glob_prob[motif[motifIndex]]);
         }
     }
     return runningSum;

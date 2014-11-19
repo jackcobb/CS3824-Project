@@ -14,12 +14,13 @@
 
 using namespace std;
 
-class ScoreEngine : public IScoreEngine {
+class ScoreEngine{
 public:
     ScoreEngine(IDnaRepository& repo);
     void SetRepo(IDnaRepository& repo);
     double Score(vector<Nucleotide_t>& motif, vector<int>& starting_loci);
     virtual ~ScoreEngine();
+    
 private:
     IDnaRepository& DNA;
     //Indexed [Nucleotide][Position]

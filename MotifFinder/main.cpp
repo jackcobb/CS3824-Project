@@ -14,6 +14,7 @@
 #include "FastaParser.h"
 #include "ScoreEngine.h"
 #include "IScoreEngine.h"
+#include "RandomizedSearchEngine.h"
 using namespace std;
 
 /*
@@ -21,6 +22,7 @@ using namespace std;
  */
 int main(int argc, char** argv) 
 {
+    srand (time(NULL));
     DnaRepository repo(512);
     FastaParser parser = FastaParser();
     ifstream stream("input.fasta", std::ifstream::in);
@@ -30,16 +32,24 @@ int main(int argc, char** argv)
         parser.Parse(stream, repo);
     }
     
-    ScoreEngine scorer = ScoreEngine(repo);
-    vector<Nucleotide_t> motif = vector<Nucleotide_t>();
-    motif.push_back(A);
-    motif.push_back(DC);
-    motif.push_back(A);
-    vector<int> loci = vector<int>();
-    loci.push_back(2);
-    loci.push_back(2);
+    RandomizedSearchEngine engine = RandomizedSearchEngine(repo, 2, 0);
+    engine.Search(60);
+    vector<Nucleotide_t> motif = engine.GetMotif();
+    vector<int> loci = engine.GetStartingLoci();
     
-    double i = scorer.Score(motif, loci);
-    return 0;
+    ScoreEngine scorer = ScoreEngine(repo);
+    double bestScore = scorer.Score(motif, loci);
+    
+    cout << bestScore << "\n";
+    for(int i = 0; i < motif.size(); i++)
+    {
+        cout << motif[i] ;
+    }
+    cout << "\n";
+    
+    for(int i = 0; i < loci.size(); i++)
+    {
+        cout << loci[i] << "\n";
+    }
 }
 
