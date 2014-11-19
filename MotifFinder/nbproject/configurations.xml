@@ -66,11 +66,6 @@
         <ccTool>
           <incDir>
             <pElem>.</pElem>
-            <pElem>FastaParser.h</pElem>
-            <pElem>IDnaRepository.h</pElem>
-            <pElem>IDnaSequence.h</pElem>
-            <pElem>Nucleotide.h</pElem>
-            <pElem>RandomEnumerator.h</pElem>
           </incDir>
         </ccTool>
       </compileType>

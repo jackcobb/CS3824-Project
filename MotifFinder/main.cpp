@@ -8,7 +8,13 @@
 
 #include <cstdlib>
 #include<iostream>
+#include <fstream>  
 #include "RandomEnumerator.h"
+#include "DnaRepository.h"
+#include "FastaParser.h"
+#include "ScoreEngine.h"
+#include "IScoreEngine.h"
+#include "RandomizedSearchEngine.h"
 using namespace std;
 
 /*
@@ -16,16 +22,34 @@ using namespace std;
  */
 int main(int argc, char** argv) 
 {
-    const double arr[] = { .5, .25, .125, .125 };
-    const int size = sizeof( arr ) / sizeof ( *arr );
-    std::vector<double> dist(arr, arr+size);
-    RandomEnumerator enumerator = RandomEnumerator();
-    enumerator.InitializeDistribution(dist);
-    double count[] = {0, 0, 0, 0};
-    for(int i = 0; i < 100000; i++)
+    srand (time(NULL));
+    DnaRepository repo(512);
+    FastaParser parser = FastaParser();
+    ifstream stream("input.fasta", std::ifstream::in);
+    
+    if (stream)
     {
-        count[enumerator.EnumerateRandomVar()]++;
+        parser.Parse(stream, repo);
     }
-    cout << count[0] << " " << count[1] << " " << count[2] << " " << count[3];
+    
+    RandomizedSearchEngine engine = RandomizedSearchEngine(repo, 2, 0);
+    engine.Search(60);
+    vector<Nucleotide_t> motif = engine.GetMotif();
+    vector<int> loci = engine.GetStartingLoci();
+    
+    ScoreEngine scorer = ScoreEngine(repo);
+    double bestScore = scorer.Score(motif, loci);
+    
+    cout << bestScore << "\n";
+    for(int i = 0; i < motif.size(); i++)
+    {
+        cout << motif[i] ;
+    }
+    cout << "\n";
+    
+    for(int i = 0; i < loci.size(); i++)
+    {
+        cout << loci[i] << "\n";
+    }
 }
 

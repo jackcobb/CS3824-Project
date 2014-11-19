@@ -9,16 +9,19 @@
 #define	DNASEQUENCEVECTOR_H
 
 #include "IDnaSequence.h"
+#include <vector>
 
 
-class DnaSequenceVector : IDnaSequence{
+class DnaSequenceVector : public IDnaSequence{
 public:
-    DnaSequenceVector(int maxSize);
+    DnaSequenceVector();
     int Size();
     Nucleotide_t Get(int i);
     void Set(int i, Nucleotide_t input);
+    void Push(Nucleotide_t input);
+    ~DnaSequenceVector();
     private:
-        std::vector<Nucleotide_t> members;
+       std::vector<Nucleotide_t> members;
 };
 
 #endif	/* DNASEQUENCEVECTOR_H */
