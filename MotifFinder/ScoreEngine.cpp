@@ -84,6 +84,7 @@ double ScoreEngine::LogProductProbMatrix(vector<Nucleotide_t>& motif) {
         if(motif[motifIndex] != DC)
         {
             runningSum += log2(ProbabilityMatrix[matrixIndex] /(double) glob_prob[motif[motifIndex]]);
+            matrixIndex++;
         }
     }
     return runningSum;
