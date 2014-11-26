@@ -42,10 +42,10 @@ vector<int> RandomizedSearchEngine::randomLoci() {
 vector<Nucleotide_t> RandomizedSearchEngine::lociToMotif(vector<int> loci) {
     vector<Nucleotide_t> bestMotif = vector<Nucleotide_t>();
     double bestMotifScore = -1000;
-    vector<Nucleotide_t> startMotif = vector<Nucleotide_t>();
+    vector<Nucleotide_t> startMotif;
     vector<Nucleotide_t> currentMotif;
     profileMatrix = createProfileMatrix(loci); //get a motif from matrix with the loci
-    startMotif = getStartingMotif(profileMatrix, startMotif);
+    startMotif = getStartingMotif(profileMatrix);
     currentMotif = startMotif;
     for (int i = 0; i < dontCares; i++){
         currentMotif[i + 1] = DC;
@@ -139,32 +139,31 @@ std::vector<int> RandomizedSearchEngine::GetStartingLoci() {
     return startingLoci;
 }
 
-int RandomizedSearchEngine::getMax(int a, int t, int g, int c){
-    int max = a;
-    if (max > t)   
+Nucleotide_t RandomizedSearchEngine::getMax(int a, int t, int g, int c){
+    int max = a, index = 0;
+    if (max < t){   
         max = t;
-    if (max < g)
+        index = 1;
+    }
+    if (max < g){
         max = g;
-    if (max < c)
+        index = 2;
+    }
+    if (max < c){
         max = c;
-    return max;
+        index = 3;
+    }
+    return (Nucleotide_t)index;
 }
-vector<Nucleotide_t> RandomizedSearchEngine::getStartingMotif(vector<vector<int> > profileMatrix, 
-        vector<Nucleotide_t> motif){
+vector<Nucleotide_t> RandomizedSearchEngine::getStartingMotif(vector<vector<int> > profileMatrix){
+    vector<Nucleotide_t> motif(profileMatrix[0].size(),A);
     for (int k = 0; k < motifLength; k++) { //get most probable (0, 1, 2, 3) at k and add to startMotif
         int a = profileMatrix[0][k];
         int t = profileMatrix[1][k];
         int g = profileMatrix[2][k];
         int c = profileMatrix[3][k];
-        int max = getMax(a, t, g, c);
-        if (max == a)  
-            motif.push_back(A);
-        else if (max == t) 
-            motif.push_back(T);
-        else if (max == g) 
-            motif.push_back(G);
-        else    
-            motif.push_back(C);
+        Nucleotide_t maxNucl = getMax(a, t, g, c);
+        motif[k] = maxNucl;
     }
     return motif;
 }

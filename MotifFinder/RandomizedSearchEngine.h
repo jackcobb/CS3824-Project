@@ -40,8 +40,8 @@ private:
     vector<vector<int> > profileMatrix;
     bool canIncrement(vector<Nucleotide_t> motif);
     vector<Nucleotide_t> increment(vector<Nucleotide_t> motif, vector<Nucleotide_t> startMotif);
-    int getMax(int a, int t, int g, int c);
-    vector<Nucleotide_t> getStartingMotif(vector<vector<int> > profileMatrix, vector<Nucleotide_t> motif);
+    Nucleotide_t getMax(int a, int t, int g, int c);
+    vector<Nucleotide_t> getStartingMotif(vector<vector<int> > profileMatrix);
     vector<vector<int> > createProfileMatrix(vector<int> loci);
 };
 
