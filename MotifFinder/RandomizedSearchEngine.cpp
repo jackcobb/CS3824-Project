@@ -169,11 +169,18 @@ vector<Nucleotide_t> RandomizedSearchEngine::getStartingMotif(vector<vector<int>
 }
 
 vector<vector<int> > RandomizedSearchEngine :: createProfileMatrix(vector<int> loci){
-    for (int i = 0; i < motifLength; i++){
-        int dnaSize = dna.Size();
-        vector<int> counts(4, 0);
-        for (int j = 0; j < dnaSize; j++){
-            int nucleotide = dna.Get(j, loci[j] + i);
+    int i = 0;
+    int j = 0;
+    int dnaSize = dna.Size();
+    vector<int> counts(4, 0);
+    int nucleotide;
+    for (i = 0; i < motifLength; i++){
+        counts[0] = 0;
+        counts[1] = 0;
+        counts[2] = 0;
+        counts[3] = 0;
+        for (j = 0; j < dnaSize; j++){
+            nucleotide = dna.Get(j, loci[j] + i);
             counts[nucleotide] += 1;
         }
         profileMatrix[0][i] = counts[0];

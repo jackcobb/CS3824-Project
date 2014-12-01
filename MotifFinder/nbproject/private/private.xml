@@ -7,11 +7,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Eric/Documents/GitHub/CS3284-Project/MotifFinder/RandomizedSearchEngine.cpp</file>
+            <file>file:/C:/Users/Eric/Documents/GitHub/CS3284-Project/MotifFinder/GibbsSearchEngine.cpp</file>
+            <file>file:/C:/Users/Eric/Documents/GitHub/CS3284-Project/MotifFinder/RandomizedSearchEngine.h</file>
+            <file>file:/C:/Users/Eric/Documents/GitHub/CS3284-Project/MotifFinder/RandomEnumerator.h</file>
             <file>file:/C:/Users/Eric/Documents/GitHub/CS3284-Project/MotifFinder/main.cpp</file>
-            <file>file:/C:/Users/Eric/Documents/GitHub/CS3284-Project/MotifFinder/DnaSequenceVector.cpp</file>
-            <file>file:/C:/Users/Eric/Documents/GitHub/CS3284-Project/MotifFinder/FastaParser.cpp</file>
-            <file>file:/C:/Users/Eric/Documents/GitHub/CS3284-Project/MotifFinder/Runner.h</file>
-            <file>file:/C:/Users/Eric/Documents/GitHub/CS3284-Project/MotifFinder/Runner.cpp</file>
+            <file>file:/C:/Users/Eric/Documents/GitHub/CS3284-Project/MotifFinder/GibbsSearchEngine.h</file>
+            <file>file:/C:/Users/Eric/Documents/GitHub/CS3284-Project/MotifFinder/ScoreEngine.h</file>
         </group>
     </open-files>
 </project-private>

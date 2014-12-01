@@ -38,11 +38,13 @@ OBJECTFILES= \
 	${OBJECTDIR}/DnaRepository.o \
 	${OBJECTDIR}/DnaSequenceVector.o \
 	${OBJECTDIR}/FastaParser.o \
+	${OBJECTDIR}/GibbsSearchEngine.o \
 	${OBJECTDIR}/IDnaRepository.o \
 	${OBJECTDIR}/RandomEnumerator.o \
 	${OBJECTDIR}/RandomizedSearchEngine.o \
 	${OBJECTDIR}/Runner.o \
 	${OBJECTDIR}/ScoreEngine.o \
+	${OBJECTDIR}/SearchResult.o \
 	${OBJECTDIR}/main.o
 
 
@@ -85,6 +87,11 @@ ${OBJECTDIR}/FastaParser.o: FastaParser.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FastaParser.o FastaParser.cpp
 
+${OBJECTDIR}/GibbsSearchEngine.o: GibbsSearchEngine.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/GibbsSearchEngine.o GibbsSearchEngine.cpp
+
 ${OBJECTDIR}/IDnaRepository.o: IDnaRepository.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -109,6 +116,11 @@ ${OBJECTDIR}/ScoreEngine.o: ScoreEngine.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ScoreEngine.o ScoreEngine.cpp
+
+${OBJECTDIR}/SearchResult.o: SearchResult.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I. -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SearchResult.o SearchResult.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}

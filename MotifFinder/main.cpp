@@ -17,6 +17,7 @@
 #include "IScoreEngine.h"
 #include "RandomizedSearchEngine.h"
 #include "Runner.h"
+#include "GibbsSearchEngine.h"
 using namespace std;
 
 void parseArgs(int argc, char** argv, int& motifLength, int& dontCare, double& time, string& filePath)
@@ -89,7 +90,7 @@ int main(int argc, char** argv)
         }
     }    
     
-    RandomizedSearchEngine engine = RandomizedSearchEngine(repo, motifLength, dontCare);
+    GibbsSearchEngine engine = GibbsSearchEngine(repo, motifLength, dontCare);
     Runner runner = Runner(repo, engine);
     runner.Run(runTime);
 }

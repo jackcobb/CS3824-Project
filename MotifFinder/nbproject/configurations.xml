@@ -6,14 +6,17 @@
                    projectFiles="true">
       <itemPath>DnaRepository.h</itemPath>
       <itemPath>FastaParser.h</itemPath>
+      <itemPath>GibbsSearchEngine.h</itemPath>
       <itemPath>IDnaRepository.h</itemPath>
       <itemPath>IDnaSequence.h</itemPath>
+      <itemPath>IScoreEngine.h</itemPath>
       <itemPath>ISearchEngine.h</itemPath>
       <itemPath>Nucleotide.h</itemPath>
       <itemPath>RandomEnumerator.h</itemPath>
       <itemPath>RandomizedSearchEngine.h</itemPath>
       <itemPath>Runner.h</itemPath>
       <itemPath>ScoreEngine.h</itemPath>
+      <itemPath>SearchResult.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -25,11 +28,13 @@
       <itemPath>DnaRepository.cpp</itemPath>
       <itemPath>DnaSequenceVector.cpp</itemPath>
       <itemPath>FastaParser.cpp</itemPath>
+      <itemPath>GibbsSearchEngine.cpp</itemPath>
       <itemPath>IDnaRepository.cpp</itemPath>
       <itemPath>RandomEnumerator.cpp</itemPath>
       <itemPath>RandomizedSearchEngine.cpp</itemPath>
       <itemPath>Runner.cpp</itemPath>
       <itemPath>ScoreEngine.cpp</itemPath>
+      <itemPath>SearchResult.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -80,11 +85,17 @@
       </item>
       <item path="FastaParser.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="GibbsSearchEngine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GibbsSearchEngine.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="IDnaRepository.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="IDnaRepository.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="IDnaSequence.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IScoreEngine.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ISearchEngine.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -105,6 +116,10 @@
       <item path="ScoreEngine.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ScoreEngine.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SearchResult.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SearchResult.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -139,11 +154,17 @@
       </item>
       <item path="FastaParser.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="GibbsSearchEngine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GibbsSearchEngine.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="IDnaRepository.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="IDnaRepository.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="IDnaSequence.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IScoreEngine.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ISearchEngine.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -164,6 +185,10 @@
       <item path="ScoreEngine.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ScoreEngine.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SearchResult.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SearchResult.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
