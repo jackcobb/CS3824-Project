@@ -51,10 +51,11 @@ SearchResult GibbsSearchEngine::Search(double maxRunTime, int maxIterWithoutImpr
 
 SearchResult GibbsSearchEngine::Search(double maxRunTime, int maxIterWithoutImprovement, vector<int>& startingLoci) {
     time_t epoch = time(NULL);
+    vector<vector<double> > profileMatrix(4, vector<double>(motifLength, 0));
     SearchResult bestResult;
     SearchResult currentResult;
     currentResult.loci = startingLoci;
-    currentResult.motif = lociToMotif(currentResult.loci);
+    currentResult.motif = lociToMotif(currentResult.loci, profileMatrix);
     currentResult.score = scoreEngine.Score(currentResult.motif, currentResult.loci);
     bestResult.loci = currentResult.loci;
     bestResult.motif = currentResult.motif;
@@ -66,11 +67,11 @@ SearchResult GibbsSearchEngine::Search(double maxRunTime, int maxIterWithoutImpr
     do{
         oldScore = currentResult.score;
         currentOptIndex = getRandomSequence();
-        updateProfileMatrixExcluding(currentOptIndex, currentResult.loci);
-        probDistri = probabilityLMer(currentOptIndex);
+        updateProfileMatrixExcluding(currentOptIndex, currentResult.loci, profileMatrix);
+        probDistri = probabilityLMer(currentOptIndex, profileMatrix);
         enumerator.InitializeDistribution(probDistri);
         currentResult.loci[currentOptIndex] = enumerator.EnumerateRandomVar();
-        currentResult.motif = lociToMotif(currentResult.loci);
+        currentResult.motif = lociToMotif(currentResult.loci, profileMatrix);
         currentResult.score = scoreEngine.Score(currentResult.motif, currentResult.loci);
         if(currentResult.score > bestResult.score)
         {
@@ -110,11 +111,11 @@ int GibbsSearchEngine::getRandomSequence() {
     return (int)floor(random);    
 }
 
-vector<Nucleotide_t> GibbsSearchEngine::lociToMotif(vector<int> loci) {
+vector<Nucleotide_t> GibbsSearchEngine::lociToMotif(vector<int> loci, vector<vector<double> >& profileMatrix) {
     vector<Nucleotide_t> bestMotif;
     vector<Nucleotide_t> startMotif;
-    updateProfileMatrix(loci); //get a motif from matrix with the loci
-    startMotif = getStartingMotif();
+    updateProfileMatrix(loci, profileMatrix); //get a motif from matrix with the loci
+    startMotif = getStartingMotif(profileMatrix);
     bestMotif = scoreEngine.optimizeDontCaresInMotif(startMotif, dontCares, loci);
     return bestMotif;
 }
@@ -136,20 +137,20 @@ Nucleotide_t GibbsSearchEngine::getMax(int a, int t, int g, int c){
     return (Nucleotide_t)index;
 }
 
-vector<Nucleotide_t> GibbsSearchEngine::getStartingMotif(){
-    vector<Nucleotide_t> motif(profileMatrixFull[0].size(),A);
+vector<Nucleotide_t> GibbsSearchEngine::getStartingMotif(vector<vector<double> >& profileMatrix){
+    vector<Nucleotide_t> motif(profileMatrix[0].size(),A);
     for (int k = 0; k < motifLength; k++) { //get most probable (0, 1, 2, 3) at k and add to startMotif
-        int a = profileMatrixFull[0][k];
-        int t = profileMatrixFull[1][k];
-        int g = profileMatrixFull[2][k];
-        int c = profileMatrixFull[3][k];
+        int a = profileMatrix[0][k];
+        int t = profileMatrix[1][k];
+        int g = profileMatrix[2][k];
+        int c = profileMatrix[3][k];
         Nucleotide_t maxNucl = getMax(a, t, g, c);
         motif[k] = maxNucl;
     }
     return motif;
 }
 
-void GibbsSearchEngine::updateProfileMatrixExcluding(int excludedIndex, vector<int> loci) {
+void GibbsSearchEngine::updateProfileMatrixExcluding(int excludedIndex, vector<int> loci, vector<vector<double> >& profileToUpdate ) {
     int motifIterator;
     int sequenceIterator;
     int nucleotide;
@@ -169,14 +170,14 @@ void GibbsSearchEngine::updateProfileMatrixExcluding(int excludedIndex, vector<i
             nucleotide = repo.Get(sequenceIterator, loci[sequenceIterator] + motifIterator);
             counts[nucleotide] += 1;            
         }
-        profileMatrixGibbs[0][motifIterator] = counts[0];
-        profileMatrixGibbs[1][motifIterator] = counts[1];
-        profileMatrixGibbs[2][motifIterator] = counts[2];
-        profileMatrixGibbs[3][motifIterator] = counts[3];
+        profileToUpdate[0][motifIterator] = counts[0];
+        profileToUpdate[1][motifIterator] = counts[1];
+        profileToUpdate[2][motifIterator] = counts[2];
+        profileToUpdate[3][motifIterator] = counts[3];
     }
 }
 
-void GibbsSearchEngine::updateProfileMatrix(vector<int> loci) {
+void GibbsSearchEngine::updateProfileMatrix(vector<int> loci, vector<vector<double> >& profileToUpdate) {
     int motifIterator;
     int sequenceIterator;
     int nucleotide;
@@ -192,20 +193,20 @@ void GibbsSearchEngine::updateProfileMatrix(vector<int> loci) {
             nucleotide = repo.Get(sequenceIterator, loci[sequenceIterator] + motifIterator);
             counts[nucleotide] += 1;            
         }
-        profileMatrixFull[0][motifIterator] = counts[0];
-        profileMatrixFull[1][motifIterator] = counts[1];
-        profileMatrixFull[2][motifIterator] = counts[2];
-        profileMatrixFull[3][motifIterator] = counts[3];
+        profileToUpdate[0][motifIterator] = counts[0];
+        profileToUpdate[1][motifIterator] = counts[1];
+        profileToUpdate[2][motifIterator] = counts[2];
+        profileToUpdate[3][motifIterator] = counts[3];
     }
 }
 
-vector<double> GibbsSearchEngine::probabilityLMer(int sequence) {
+vector<double> GibbsSearchEngine::probabilityLMer(int sequence, vector<vector<double> >& profileMatrix) {
     int lastIndex = repo.Size(sequence) - motifLength + 1;
     vector<double> probLmers(lastIndex, 0);
     double runningSum = 0;
     for(int i = 0; i < lastIndex; i++)
     {
-        probLmers[i] = probOfLmerAt(sequence, i);
+        probLmers[i] = probOfLmerAt(sequence, i, profileMatrix);
         runningSum += probLmers[i];
     }
     if(runningSum == 0)
@@ -224,7 +225,7 @@ vector<double> GibbsSearchEngine::probabilityLMer(int sequence) {
     return probLmers;
 }
 
-double GibbsSearchEngine::probOfLmerAt(int sequenceID, int sequenceIndex) {
+double GibbsSearchEngine::probOfLmerAt(int sequenceID, int sequenceIndex, vector<vector<double> >& profileMatrix) {
     double prob = 1;
     Nucleotide_t lMerIterator;
     double columnCount;
@@ -232,7 +233,7 @@ double GibbsSearchEngine::probOfLmerAt(int sequenceID, int sequenceIndex) {
     for(int i = 0; i < motifLength; i++)
     {
         lMerIterator = repo.Get(sequenceID, i + sequenceIndex);
-        columnCount = profileMatrixGibbs[lMerIterator][i];
+        columnCount = profileMatrix[lMerIterator][i];
         prob *= columnCount / columnSize;
     }
     return prob;

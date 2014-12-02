@@ -54,13 +54,13 @@ private:
     vector<int> getRandomLoci();
     int randomPosition(int i);
     int getRandomSequence();
-    void updateProfileMatrix(vector<int> loci);
-    void updateProfileMatrixExcluding(int excludedIndex, vector<int> loci);
-    vector<double> probabilityLMer(int sequence);
-    double probOfLmerAt(int sequenceID, int sequenceIndex);
-    vector<Nucleotide_t> lociToMotif(vector<int> loci);
+    void updateProfileMatrix(vector<int> loci, vector<vector<double> >& profileMatrix);
+    void updateProfileMatrixExcluding(int excludedIndex, vector<int> loci, vector<vector<double> >& profileMatrix);
+    vector<double> probabilityLMer(int sequence, vector<vector<double> >& profileMatrix);
+    double probOfLmerAt(int sequenceID, int sequenceIndex, vector<vector<double> >& profileMatrix);
+    vector<Nucleotide_t> lociToMotif(vector<int> loci, vector<vector<double> >& profileMatrix);
     Nucleotide_t getMax(int a, int t, int g, int c);
-    vector<Nucleotide_t> getStartingMotif();
+    vector<Nucleotide_t> getStartingMotif(vector<vector<double> >& profileMatrix);
     
     
 
