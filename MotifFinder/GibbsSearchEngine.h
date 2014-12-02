@@ -30,13 +30,7 @@ public:
 
     virtual void Search(double time);
     
-    virtual SearchResult SearchAll(double maxRunTime, int maxIterations, double convergenceFactor);
-    virtual SearchResult SearchIterConv(int maxIterations, double convergenceFactor);
-    virtual SearchResult SearchTimeConv(double maxRunTime, double convergenceFactor);
-    virtual SearchResult SearchTimeIter(double maxRunTime, int maxIterations);
-    virtual SearchResult SearchTime(double maxRunTime);
-    virtual SearchResult SearchIter(int maxIterations);
-    virtual SearchResult SearchConv(double convergenceFactor);
+    virtual SearchResult Search(double maxRunTime, int maxIterations);
 
     virtual void SetDontCares(int number);
 

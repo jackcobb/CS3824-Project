@@ -24,33 +24,40 @@ GibbsSearchEngine::GibbsSearchEngine(IDnaRepository& repo, int motifLength, int 
 
 void GibbsSearchEngine::Search(double runTime) {
     time_t epoch = time(NULL);
-    double currentScore = 0;
-    vector<int> currentLoci = getRandomLoci();
-    int currentOptIndex = 0;
-    RandomEnumerator enumerator;
-    vector<Nucleotide_t> currentMotif(motifLength, A);
-    do{
-        currentOptIndex = getRandomSequence();
-        updateProfileMatrixExcluding(currentOptIndex, currentLoci);
-        probDistri = probabilityLMer(currentOptIndex);
-        enumerator.InitializeDistribution(probDistri);
-        currentLoci[currentOptIndex] = enumerator.EnumerateRandomVar();
-    }while(difftime(time(NULL), epoch) < runTime);
-    loci = currentLoci;
-    motif = lociToMotif(loci);
-    score = scoreEngine.Score(motif, loci);
+    SearchResult currentResult, bestResult;
+    bestResult = Search(runTime, 140);
+    double timeRemaining = difftime(runTime, difftime(time(NULL), epoch));
+    while(timeRemaining > 0)
+    {
+        currentResult = Search(timeRemaining, 140);
+        if(currentResult.score > bestResult.score)
+        {
+            bestResult.loci = currentResult.loci;
+            bestResult.motif = currentResult.motif;
+            bestResult.score = currentResult.score;
+        }
+        timeRemaining = difftime(runTime, difftime(time(NULL), epoch));
+    }    
+    
+    loci = bestResult.loci;
+    motif = bestResult.motif;
+    score = bestResult.score;
 }
 
-SearchResult GibbsSearchEngine::SearchAll(double maxRunTime, int maxIterations, double convergenceFactor) {
+SearchResult GibbsSearchEngine::Search(double maxRunTime, int maxiterWithoutImprovement) {
     time_t epoch = time(NULL);
+    SearchResult bestResult;
     SearchResult currentResult;
-    currentResult.score = 0;
     currentResult.loci = getRandomLoci();
-    currentResult.motif = vector<Nucleotide_t>(motifLength, A);
+    currentResult.motif = lociToMotif(currentResult.loci);
+    currentResult.score = scoreEngine.Score(currentResult.motif, currentResult.loci);
+    bestResult.loci = currentResult.loci;
+    bestResult.motif = currentResult.motif;
+    bestResult.score = currentResult.score;
     double oldScore = -10;
     int currentOptIndex = 0;
     RandomEnumerator enumerator;
-    int iterationCount = 0;
+    int iterWithoutImprovement = 0;
     do{
         oldScore = currentResult.score;
         currentOptIndex = getRandomSequence();
@@ -60,146 +67,19 @@ SearchResult GibbsSearchEngine::SearchAll(double maxRunTime, int maxIterations, 
         currentResult.loci[currentOptIndex] = enumerator.EnumerateRandomVar();
         currentResult.motif = lociToMotif(currentResult.loci);
         currentResult.score = scoreEngine.Score(currentResult.motif, currentResult.loci);
-        iterationCount++;
-    }while((difftime(time(NULL), epoch) < maxRunTime) && (iterationCount <= maxIterations) && fabs(oldScore - currentResult.score) < convergenceFactor);
-    return currentResult;
-}
-
-SearchResult GibbsSearchEngine::SearchConv(double convergenceFactor) {
-    SearchResult currentResult;
-    currentResult.score = 0;
-    currentResult.loci = getRandomLoci();
-    currentResult.motif = vector<Nucleotide_t>(motifLength, A);
-    double oldScore = -10;
-    int currentOptIndex = 0;
-    RandomEnumerator enumerator;
-    do{
-        oldScore = currentResult.score;
-        currentOptIndex = getRandomSequence();
-        updateProfileMatrixExcluding(currentOptIndex, currentResult.loci);
-        probDistri = probabilityLMer(currentOptIndex);
-        enumerator.InitializeDistribution(probDistri);
-        currentResult.loci[currentOptIndex] = enumerator.EnumerateRandomVar();
-        currentResult.motif = lociToMotif(currentResult.loci);
-        currentResult.score = scoreEngine.Score(currentResult.motif, currentResult.loci);
-    }while(fabs(oldScore - currentResult.score) < convergenceFactor);
-    return currentResult;
-}
-
-SearchResult GibbsSearchEngine::SearchIter(int maxIterations) {
-    SearchResult currentResult;
-    currentResult.score = 0;
-    currentResult.loci = getRandomLoci();
-    currentResult.motif = vector<Nucleotide_t>(motifLength, A);
-    double oldScore = -10;
-    int currentOptIndex = 0;
-    RandomEnumerator enumerator;
-    int iterationCount = 0;
-    do{
-        oldScore = currentResult.score;
-        currentOptIndex = getRandomSequence();
-        updateProfileMatrixExcluding(currentOptIndex, currentResult.loci);
-        probDistri = probabilityLMer(currentOptIndex);
-        enumerator.InitializeDistribution(probDistri);
-        currentResult.loci[currentOptIndex] = enumerator.EnumerateRandomVar();
-        currentResult.motif = lociToMotif(currentResult.loci);
-        currentResult.score = scoreEngine.Score(currentResult.motif, currentResult.loci);
-        iterationCount++;
-    }while(iterationCount <= maxIterations);
-    return currentResult;
-}
-
-SearchResult GibbsSearchEngine::SearchIterConv(int maxIterations, double convergenceFactor) {
-    SearchResult currentResult;
-    currentResult.score = 0;
-    currentResult.loci = getRandomLoci();
-    currentResult.motif = vector<Nucleotide_t>(motifLength, A);
-    double oldScore = -10;
-    int currentOptIndex = 0;
-    RandomEnumerator enumerator;
-    int iterationCount = 0;
-    do{
-        oldScore = currentResult.score;
-        currentOptIndex = getRandomSequence();
-        updateProfileMatrixExcluding(currentOptIndex, currentResult.loci);
-        probDistri = probabilityLMer(currentOptIndex);
-        enumerator.InitializeDistribution(probDistri);
-        currentResult.loci[currentOptIndex] = enumerator.EnumerateRandomVar();
-        currentResult.motif = lociToMotif(currentResult.loci);
-        currentResult.score = scoreEngine.Score(currentResult.motif, currentResult.loci);
-        iterationCount++;
-    }while(iterationCount <= maxIterations && fabs(oldScore - currentResult.score) < convergenceFactor);
-    return currentResult;
-}
-
-SearchResult GibbsSearchEngine::SearchTime(double maxRunTime) {
-    time_t epoch = time(NULL);
-    SearchResult currentResult;
-    currentResult.score = 0;
-    currentResult.loci = getRandomLoci();
-    currentResult.motif = vector<Nucleotide_t>(motifLength, A);
-    double oldScore = -10;
-    int currentOptIndex = 0;
-    RandomEnumerator enumerator;
-    int iterationCount = 0;
-    do{
-        oldScore = currentResult.score;
-        currentOptIndex = getRandomSequence();
-        updateProfileMatrixExcluding(currentOptIndex, currentResult.loci);
-        probDistri = probabilityLMer(currentOptIndex);
-        enumerator.InitializeDistribution(probDistri);
-        currentResult.loci[currentOptIndex] = enumerator.EnumerateRandomVar();
-        currentResult.motif = lociToMotif(currentResult.loci);
-        currentResult.score = scoreEngine.Score(currentResult.motif, currentResult.loci);
-        iterationCount++;
-    }while(difftime(time(NULL), epoch) < maxRunTime);
-    return currentResult;
-}
-
-SearchResult GibbsSearchEngine::SearchTimeConv(double maxRunTime, double convergenceFactor) {
-    time_t epoch = time(NULL);
-    SearchResult currentResult;
-    currentResult.score = 0;
-    currentResult.loci = getRandomLoci();
-    currentResult.motif = vector<Nucleotide_t>(motifLength, A);
-    double oldScore = -10;
-    int currentOptIndex = 0;
-    RandomEnumerator enumerator;
-    do{
-        oldScore = currentResult.score;
-        currentOptIndex = getRandomSequence();
-        updateProfileMatrixExcluding(currentOptIndex, currentResult.loci);
-        probDistri = probabilityLMer(currentOptIndex);
-        enumerator.InitializeDistribution(probDistri);
-        currentResult.loci[currentOptIndex] = enumerator.EnumerateRandomVar();
-        currentResult.motif = lociToMotif(currentResult.loci);
-        currentResult.score = scoreEngine.Score(currentResult.motif, currentResult.loci);
-    }while((difftime(time(NULL), epoch) < maxRunTime) && fabs(oldScore - currentResult.score) < convergenceFactor);
-    return currentResult;
-}
-
-SearchResult GibbsSearchEngine::SearchTimeIter(double maxRunTime, int maxIterations) {
-    time_t epoch = time(NULL);
-    SearchResult currentResult;
-    currentResult.score = 0;
-    currentResult.loci = getRandomLoci();
-    currentResult.motif = vector<Nucleotide_t>(motifLength, A);
-    double oldScore = -10;
-    int currentOptIndex = 0;
-    RandomEnumerator enumerator;
-    int iterationCount = 0;
-    do{
-        oldScore = currentResult.score;
-        currentOptIndex = getRandomSequence();
-        updateProfileMatrixExcluding(currentOptIndex, currentResult.loci);
-        probDistri = probabilityLMer(currentOptIndex);
-        enumerator.InitializeDistribution(probDistri);
-        currentResult.loci[currentOptIndex] = enumerator.EnumerateRandomVar();
-        currentResult.motif = lociToMotif(currentResult.loci);
-        currentResult.score = scoreEngine.Score(currentResult.motif, currentResult.loci);
-        iterationCount++;
-    }while(difftime(time(NULL), epoch) < maxRunTime && iterationCount <= maxIterations);
-    return currentResult;
+        if(currentResult.score > bestResult.score)
+        {
+            bestResult.loci = currentResult.loci;
+            bestResult.motif = currentResult.motif;
+            bestResult.score = currentResult.score;
+            iterWithoutImprovement = 0;
+        }
+        else
+        {
+            iterWithoutImprovement++;
+        }
+    }while((difftime(time(NULL), epoch) < maxRunTime) && iterWithoutImprovement <= maxiterWithoutImprovement);
+    return bestResult;
 }
 
 vector<int> GibbsSearchEngine::getRandomLoci() {
