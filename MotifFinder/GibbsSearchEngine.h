@@ -31,6 +31,8 @@ public:
     virtual void Search(double time);
     
     virtual SearchResult Search(double maxRunTime, int maxIterations);
+    
+    virtual SearchResult Search(double maxRunTime, int maxIterations, vector<int>& startingLoci);
 
     virtual void SetDontCares(int number);
 

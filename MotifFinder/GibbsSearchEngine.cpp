@@ -44,11 +44,16 @@ void GibbsSearchEngine::Search(double runTime) {
     score = bestResult.score;
 }
 
-SearchResult GibbsSearchEngine::Search(double maxRunTime, int maxiterWithoutImprovement) {
+SearchResult GibbsSearchEngine::Search(double maxRunTime, int maxIterWithoutImprovement) {
+    vector<int> startingLoci = getRandomLoci();
+    return Search(maxRunTime, maxIterWithoutImprovement, startingLoci);
+}
+
+SearchResult GibbsSearchEngine::Search(double maxRunTime, int maxIterWithoutImprovement, vector<int>& startingLoci) {
     time_t epoch = time(NULL);
     SearchResult bestResult;
     SearchResult currentResult;
-    currentResult.loci = getRandomLoci();
+    currentResult.loci = startingLoci;
     currentResult.motif = lociToMotif(currentResult.loci);
     currentResult.score = scoreEngine.Score(currentResult.motif, currentResult.loci);
     bestResult.loci = currentResult.loci;
@@ -78,9 +83,10 @@ SearchResult GibbsSearchEngine::Search(double maxRunTime, int maxiterWithoutImpr
         {
             iterWithoutImprovement++;
         }
-    }while((difftime(time(NULL), epoch) < maxRunTime) && iterWithoutImprovement <= maxiterWithoutImprovement);
+    }while((difftime(time(NULL), epoch) < maxRunTime) && iterWithoutImprovement <= maxIterWithoutImprovement);
     return bestResult;
 }
+
 
 vector<int> GibbsSearchEngine::getRandomLoci() {
     vector<int> loci = vector<int>(repo.Size(), 0);
