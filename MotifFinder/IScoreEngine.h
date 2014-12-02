@@ -17,6 +17,7 @@ class IScoreEngine {
 public:
     virtual void SetRepo(IDnaRepository& input) =0;
     virtual double Score(vector<Nucleotide_t>& Motif, vector<int>& StartingLoci) = 0;
+    virtual vector<Nucleotide_t> optimizeDontCaresInMotif(vector<Nucleotide_t>& motif, int dontCares, vector<int>& loci) =0;
     
 private:
 

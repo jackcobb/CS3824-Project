@@ -19,6 +19,7 @@ public:
     ScoreEngine(IDnaRepository& repo);
     void SetRepo(IDnaRepository& repo);
     double Score(vector<Nucleotide_t>& motif, vector<int>& starting_loci);
+    vector<Nucleotide_t> optimizeDontCaresInMotif(vector<Nucleotide_t>& motif, int dontCares, vector<int>& loci);
     virtual ~ScoreEngine();
     
 private:
@@ -29,6 +30,10 @@ private:
     bool ValidateStartingLoci(int motifSize, vector<int>& starting_loci);
     void UpdateProbabilityMatrix(vector<Nucleotide_t>& motif, vector<int>& starting_loci);
     double LogProductProbMatrix(vector<Nucleotide_t>& motif);
+    double scoreAtIndex(Nucleotide_t toScore, int index);
+    void quickSort(vector<vector<double> >& elements, int lower, int upper);
+    int partition(vector<vector<double> >& elements, int lower, int upper);
+    void swap(vector<vector<double> >& elements, int lower, int upper);
 };
 
 #endif	/* SCOREENGINE_H */

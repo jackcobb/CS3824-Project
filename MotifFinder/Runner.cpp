@@ -25,7 +25,7 @@ void Runner::Run(double runTime) {
     cout << "Loci of the best motif are here:\n";
     vector<int> loci = searchEngine.GetStartingLoci();
     for(int i = 0; i < loci.size(); i++) {
-       cout << loci[i] << "\n";
+       cout << loci[i] + 1 << "\n";
     }
     
            

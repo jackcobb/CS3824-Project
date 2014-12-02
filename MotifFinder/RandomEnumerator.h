@@ -19,7 +19,7 @@ public:
     int EnumerateRandomVar();
     ~RandomEnumerator();
 private:
-    bool ValidateSizes(std::vector<double> & sizes);
+    void ValidateSizes(std::vector<double> & sizes);
     std::vector<double> buckets;
 };
 double UniformOneZero();

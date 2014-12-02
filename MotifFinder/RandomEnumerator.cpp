@@ -23,8 +23,7 @@ RandomEnumerator::~RandomEnumerator() {
 
 bool RandomEnumerator::InitializeDistribution(std::vector<double> & input)
 {
-    if(!ValidateSizes(input))
-        return false;
+    ValidateSizes(input);
     buckets.resize(input.size(), 0);
     double currentEndpoint = 0;
     for(int i = 0; i < input.size(); i++)
@@ -35,14 +34,17 @@ bool RandomEnumerator::InitializeDistribution(std::vector<double> & input)
     return true;
 }
 
-bool RandomEnumerator::ValidateSizes(std::vector<double>& input)
+void RandomEnumerator::ValidateSizes(std::vector<double>& input)
 {
     double sum = 0;
     for(int i = 0; i < input.size(); i++)
     {
         sum += input[i];
     }
-    return sum == 1;
+    if(sum != 1)
+    {
+        input.end() += 1 - sum;
+    }
 }
 
 std::vector<double> & RandomEnumerator::GetDistrubtionBuckets()
