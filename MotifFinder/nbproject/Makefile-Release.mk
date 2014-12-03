@@ -40,7 +40,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/FastaParser.o \
 	${OBJECTDIR}/GibbsSearchEngine.o \
 	${OBJECTDIR}/IDnaRepository.o \
+	${OBJECTDIR}/MotifHashTable.o \
 	${OBJECTDIR}/RandomEnumerator.o \
+	${OBJECTDIR}/RandomProjectionSearchEngine.o \
 	${OBJECTDIR}/RandomizedSearchEngine.o \
 	${OBJECTDIR}/Runner.o \
 	${OBJECTDIR}/ScoreEngine.o \
@@ -97,10 +99,20 @@ ${OBJECTDIR}/IDnaRepository.o: IDnaRepository.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/IDnaRepository.o IDnaRepository.cpp
 
+${OBJECTDIR}/MotifHashTable.o: MotifHashTable.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/MotifHashTable.o MotifHashTable.cpp
+
 ${OBJECTDIR}/RandomEnumerator.o: RandomEnumerator.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RandomEnumerator.o RandomEnumerator.cpp
+
+${OBJECTDIR}/RandomProjectionSearchEngine.o: RandomProjectionSearchEngine.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RandomProjectionSearchEngine.o RandomProjectionSearchEngine.cpp
 
 ${OBJECTDIR}/RandomizedSearchEngine.o: RandomizedSearchEngine.cpp 
 	${MKDIR} -p ${OBJECTDIR}

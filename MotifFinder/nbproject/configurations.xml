@@ -11,8 +11,10 @@
       <itemPath>IDnaSequence.h</itemPath>
       <itemPath>IScoreEngine.h</itemPath>
       <itemPath>ISearchEngine.h</itemPath>
+      <itemPath>MotifHashTable.h</itemPath>
       <itemPath>Nucleotide.h</itemPath>
       <itemPath>RandomEnumerator.h</itemPath>
+      <itemPath>RandomProjectionSearchEngine.h</itemPath>
       <itemPath>RandomizedSearchEngine.h</itemPath>
       <itemPath>Runner.h</itemPath>
       <itemPath>ScoreEngine.h</itemPath>
@@ -30,7 +32,9 @@
       <itemPath>FastaParser.cpp</itemPath>
       <itemPath>GibbsSearchEngine.cpp</itemPath>
       <itemPath>IDnaRepository.cpp</itemPath>
+      <itemPath>MotifHashTable.cpp</itemPath>
       <itemPath>RandomEnumerator.cpp</itemPath>
+      <itemPath>RandomProjectionSearchEngine.cpp</itemPath>
       <itemPath>RandomizedSearchEngine.cpp</itemPath>
       <itemPath>Runner.cpp</itemPath>
       <itemPath>ScoreEngine.cpp</itemPath>
@@ -99,11 +103,19 @@
       </item>
       <item path="ISearchEngine.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="MotifHashTable.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MotifHashTable.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Nucleotide.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="RandomEnumerator.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="RandomEnumerator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RandomProjectionSearchEngine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RandomProjectionSearchEngine.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="RandomizedSearchEngine.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -168,11 +180,19 @@
       </item>
       <item path="ISearchEngine.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="MotifHashTable.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MotifHashTable.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Nucleotide.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="RandomEnumerator.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="RandomEnumerator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RandomProjectionSearchEngine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RandomProjectionSearchEngine.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="RandomizedSearchEngine.cpp" ex="false" tool="1" flavor2="0">
       </item>
