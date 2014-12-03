@@ -12,6 +12,9 @@
 
 using namespace std;
 
+        DnaSequenceVector::DnaSequenceVector(int i) {
+            members = std::vector<Nucleotide_t>(i);
+        }
         DnaSequenceVector::DnaSequenceVector() {
             members = std::vector<Nucleotide_t>();
         }

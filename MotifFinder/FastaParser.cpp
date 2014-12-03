@@ -11,6 +11,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <sstream>
+
 using namespace std;
 
 FastaParser::FastaParser() {
@@ -29,14 +31,18 @@ void FastaParser::Parse(std::ifstream& file, IDnaRepository& repo)
     Nucleotide_t c = C;
     Nucleotide_t g = G;
     Nucleotide_t t = T;
-    DnaSequenceVector vector = DnaSequenceVector();
-    getline(file, line);
+    DnaSequenceVector vector;
+    //getline(file, line);
     while (getline(file, line))
     {
         if (line[0] == '>')
         {
-            repo.Add(vector);
-            vector = DnaSequenceVector();
+            istringstream iss(line);       
+            string size;
+            iss >> size >> size >> size;
+            printf("%s\n", size.c_str());
+            //repo.Add(vector);
+            vector = DnaSequenceVector(stoi(size));
             continue;
         }
         else
@@ -45,23 +51,24 @@ void FastaParser::Parse(std::ifstream& file, IDnaRepository& repo)
             {
                 if (line[i] == 'T')
                 {
-                    vector.Push(t);
+                    vector.Set(i, t);
                 }
                 else if (line[i] == 'A')
                 {
-                    vector.Push(a);
+                    vector.Set(i, a);
                 }
                 else if (line[i] == 'G')
                 {
-                    vector.Push(g);
+                    vector.Set(i, g);
                 }
                 else if (line[i] == 'C')
                 {
-                    vector.Push(c);
+                    vector.Set(i, c);
                 }
             }
+            repo.Add(vector);
         }
     }
-            repo.Add(vector);
+            //repo.Add(vector);
 }
 
