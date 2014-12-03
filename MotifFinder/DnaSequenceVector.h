@@ -14,6 +14,7 @@
 
 class DnaSequenceVector : public IDnaSequence{
 public:
+    DnaSequenceVector(int i);
     DnaSequenceVector();
     int Size();
     Nucleotide_t Get(int i);
